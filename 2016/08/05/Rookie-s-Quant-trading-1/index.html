@@ -1,200 +1,169 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
 <head>
   <meta charset="utf-8">
   
   <title>Rookie&#39;s Quant-trading(1) | 流水落花</title>
+  <meta name="author" content="Yumin Huang">
+  
+  <meta name="description" content="量化交易似乎是一个很高大上的名词，隔行如隔山，以我短浅的股票投机经历，我也只能边学习边探讨。也是从Crossin这个公众号受到启发，又跟师兄聊了一些投机经历，这两天开始小试牛刀一下。    平台选取在国内的：    优矿    uqer.io
+进入，注册，然后开始研究，新建策略，这时候就给出了一个比">
+  
+  
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="量化交易似乎是一个很高大上的名词，隔行如隔山，以我短浅的股票投机经历，我也只能边学习边探讨。也是从Crossin这个公众号受到启发，又跟师兄聊了一些投机经历，这两天开始小试牛刀一下。平台选取在国内的：优矿uqer.io
-进入，注册，然后开始研究，新建策略，这时候就给出了一个比较简单的策略。
-参考Crossin公众号的一些基本操作，打算自己先简单的编写一个策略试试手。正好之前某天和师兄一起去下地，我">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Rookie's Quant-trading(1)">
-<meta property="og:url" content="http://yoursite.com/2016/08/05/Rookie-s-Quant-trading-1/index.html">
-<meta property="og:site_name" content="流水落花">
-<meta property="og:description" content="量化交易似乎是一个很高大上的名词，隔行如隔山，以我短浅的股票投机经历，我也只能边学习边探讨。也是从Crossin这个公众号受到启发，又跟师兄聊了一些投机经历，这两天开始小试牛刀一下。平台选取在国内的：优矿uqer.io
-进入，注册，然后开始研究，新建策略，这时候就给出了一个比较简单的策略。
-参考Crossin公众号的一些基本操作，打算自己先简单的编写一个策略试试手。正好之前某天和师兄一起去下地，我">
-<meta property="og:image" content="http://mmbiz.qpic.cn/mmbiz/nvWlHia9NcgVGyL7J6WzlQ3f5nhA2WfZIJaEZzWb0FYK90Lq2ViaEibBLHon1eCaiaWaQtE2ic5tw3qg9fibZ6IhZ4Sg/640?wx_fmt=png&tp=webp&wxfrom=5">
-<meta property="og:updated_time" content="2016-09-03T05:49:36.581Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Rookie's Quant-trading(1)">
-<meta name="twitter:description" content="量化交易似乎是一个很高大上的名词，隔行如隔山，以我短浅的股票投机经历，我也只能边学习边探讨。也是从Crossin这个公众号受到启发，又跟师兄聊了一些投机经历，这两天开始小试牛刀一下。平台选取在国内的：优矿uqer.io
-进入，注册，然后开始研究，新建策略，这时候就给出了一个比较简单的策略。
-参考Crossin公众号的一些基本操作，打算自己先简单的编写一个策略试试手。正好之前某天和师兄一起去下地，我">
-<meta name="twitter:image" content="http://mmbiz.qpic.cn/mmbiz/nvWlHia9NcgVGyL7J6WzlQ3f5nhA2WfZIJaEZzWb0FYK90Lq2ViaEibBLHon1eCaiaWaQtE2ic5tw3qg9fibZ6IhZ4Sg/640?wx_fmt=png&tp=webp&wxfrom=5">
+
+  <meta property="og:title" content="Rookie&#39;s Quant-trading(1)"/>
+  <meta property="og:site_name" content="流水落花"/>
+
   
-    <link rel="alternate" href="/atom.xml" title="流水落花" type="application/atom+xml">
+    <meta property="og:image" content="undefined"/>
   
-  
-    <link rel="icon" href="/favicon.png">
-  
-  
-    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  
-  <link rel="stylesheet" href="/css/style.css">
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="流水落花" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
   
 
 </head>
 
+
 <body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">流水落花</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
-      </div>
-    </div>
-  </div>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">流水落花</a></h1>
+  <h2><a href="/"></a></h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/">Home</a></li>
+    
+      <li><a href="/archives">Archives</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
 </header>
-      <div class="outer">
-        <section id="main"><article id="post-Rookie-s-Quant-trading-1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/08/05/Rookie-s-Quant-trading-1/" class="article-date">
-  <time datetime="2016-08-05T08:37:42.000Z" itemprop="datePublished">2016-08-05</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
   
-    <h1 class="article-title" itemprop="name">
-      Rookie&#39;s Quant-trading(1)
-    </h1>
+  <div class="post-content">
+    <header>
+      
+        <div class="icon"></div>
+        <time datetime="2016-08-05T08:37:42.000Z"><a href="/2016/08/05/Rookie-s-Quant-trading-1/">2016-08-05</a></time>
+      
+      
+  
+    <h1 class="title">Rookie&#39;s Quant-trading(1)</h1>
   
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
+    </header>
+    <div class="entry">
       
-        <p><img src="http://mmbiz.qpic.cn/mmbiz/nvWlHia9NcgVGyL7J6WzlQ3f5nhA2WfZIJaEZzWb0FYK90Lq2ViaEibBLHon1eCaiaWaQtE2ic5tw3qg9fibZ6IhZ4Sg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5" alt=""><br>量化交易似乎是一个很高大上的名词，隔行如隔山，以我短浅的股票投机经历，我也只能边学习边探讨。<br>也是从Crossin这个公众号受到启发，又跟师兄聊了一些投机经历，这两天开始小试牛刀一下。<br>平台选取在国内的：<br>优矿<br>uqer.io</p>
-<p>进入，注册，然后开始研究，新建策略，这时候就给出了一个比较简单的策略。</p>
-<p>参考Crossin公众号的一些基本操作，打算自己先简单的编写一个策略试试手。<br>正好之前某天和师兄一起去下地，我们互相交流并探讨了一下关于股票投机的经历和一些操作观念。。从实验室聊到了车上，又从车上说到了地里。。总的来说，虽然我和师兄的投机观念有较大的不同，但也是可以求同存异的。<br>当天在地里，师兄就给我谈了谈他的一种交易手法。<br>基本是这样的：超短线进出，日跌幅小于3%，半仓；日跌幅大于3%小于6%，全仓；日跌幅大于6%，割肉止损；日涨幅大于9%，止盈。大概就是这些。<br>于是我试着把这个策略写了一下：</p>
-<p>简单解释一下：<br>start&amp;end：起始和结束时间，这里我是选择了一个2年的时间段。<br>universe：股池，这里我选择了师兄最喜欢交易的东航。<br>freq：策略类型，这里我选择的是日间交易<br>refresh_rate：调仓频率，由于是超短交易，所以我设为了每日交易。<br>initialize：账户初始化，暂时没有用到。<br>handle_data(account)：每次调仓的交易策略，最为主要。<br>    account.get_attribute_history：获取股票历时数据，这里传入的第一个参数“closePrice”为收盘价，第二个参数为10，即获取最近10天内该股的收盘价格，return一个list。<br>    account.universe：从全局变量universe和当前持有的股票池中，剔除了当天停牌、退市和数据异常股票的股池。<br>    hist[s][-1]/hist[s][-2]-1：最近交易日的日涨跌幅<br>    order_pct(s,0.5)：交易股票使其价值为账户总资产的50%，这里即半仓。<br>    order_to(s,0)：交易一定股票使交易后该股数量为0，即清仓。</p>
-<p>大体就是如此，按此策略，我们试着跑了一下：</p>
-<p>似乎还不错的样子，阿尔法达到了32.9%，应该说是轻松超过了基准，最大回撤还是有些大，达到了45.6%，不太理想，说明风险控制不足。于是我准备在此基础上再简单加一些风控机制。<br>即5日内跌幅大于10%或15日内涨幅超过50%时，全部清仓。<br>于是变成了：</p>
-<p>再试着跑了一下：</p>
-<p>看起来有效果了，阿尔法达到了62.9%，回撤也下降到了31.1%。从两图对比也可以看出在后半段15年8月左右的下跌中较好的控制了风险。</p>
-<p>但我们也不能仅仅满足于此，股池内股票单一，只有一只东航，东航在14、15年涨幅巨大，本身就是只牛股，可能不太具有说服力，于是我又调仓换股，换个大蓝（烂）筹（丑），工商银行试试看。</p>
-<p>显然跟之前相比不尽如人意，想了想会不会是由于工行盘子太大，波动小导致此策略施展不开：）于是再换一只同样稳的不行的601857中国神油看看：</p>
-<p>果然也是不分上下，烂的抠脚啊。<br>既然如此，换成牛市后期和股灾中十分抢眼的国企改革龙头中粮生化看看：</p>
-<p>嗯。。很惊人，再细看中粮这段时间的独立走势：</p>
-<p>发现策略在头肩顶结构后还能创出新高，嗯。。看来我做的这个简单风险控制策略还不错。。<br>当然我这只是粗略的写了一个小策略，也有许多不完善的地方，仓位的分散及股池内股票筛选、权重，都还没有制定，只是以一个简单的交易策略为依据，就当作练练手了。</p>
+        <p><img src="http://mmbiz.qpic.cn/mmbiz/nvWlHia9NcgVGyL7J6WzlQ3f5nhA2WfZIJaEZzWb0FYK90Lq2ViaEibBLHon1eCaiaWaQtE2ic5tw3qg9fibZ6IhZ4Sg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5" alt=""><br>    量化交易似乎是一个很高大上的名词，隔行如隔山，以我短浅的股票投机经历，我也只能边学习边探讨。<br>也是从Crossin这个公众号受到启发，又跟师兄聊了一些投机经历，这两天开始小试牛刀一下。<br>    平台选取在国内的：<br>    <em>优矿</em><br>    <a href="uqer.io">uqer.io</a></p>
+<pre><code>进入，注册，然后开始研究，新建策略，这时候就给出了一个比较简单的策略。
+</code></pre><p><img src="http://mmbiz.qpic.cn/mmbiz/nvWlHia9NcgVGyL7J6WzlQ3f5nhA2WfZIGf3Dj54Glsa7uGZGcKBIosHaQwyyQCuzY5kxzNgIFydibfB5o00jhPw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt=""></p>
+<pre><code>参考Crossin公众号的一些基本操作，打算自己先简单的编写一个策略试试手。
+正好之前某天和师兄一起去下地，我们互相交流并探讨了一下关于股票投机的经历和一些操作观念。。从实验室聊到了车上，又从车上说到了地里。。总的来说，虽然我和师兄的投机观念有较大的不同，但也是可以求同存异的。
+</code></pre><p>当天在地里，师兄就给我谈了谈他的一种交易手法。<br>    基本是这样的：超短线进出，日跌幅小于3%，半仓；日跌幅大于3%小于6%，全仓；日跌幅大于6%，割肉止损；日涨幅大于9%，止盈。大概就是这些。<br>    于是我试着把这个策略写了一下：<br><img src="http://mmbiz.qpic.cn/mmbiz/nvWlHia9NcgVGyL7J6WzlQ3f5nhA2WfZIKkFTftpfDH9YwpcXXpDFcRJKfkaeVic46kMibg0czx3pKmTcySSia5eyA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt=""><br>    简单解释一下：<br>start&amp;end：起始和结束时间，这里我是选择了一个2年的时间段。<br>universe：股池，这里我选择了师兄最喜欢交易的东航。<br>freq：策略类型，这里我选择的是日间交易<br>refresh_rate：调仓频率，由于是超短交易，所以我设为了每日交易。<br>initialize：账户初始化，暂时没有用到。<br>handle_data(account)：每次调仓的交易策略，最为主要。<br>    account.get_attribute_history：获取股票历时数据，这里传入的第一个参数“closePrice”为收盘价，第二个参数为10，即获取最近10天内该股的收盘价格，return一个list。<br>    account.universe：从全局变量universe和当前持有的股票池中，剔除了当天停牌、退市和数据异常股票的股池。<br>    hist[s][-1]/hist[s][-2]-1：最近交易日的日涨跌幅<br>    order_pct(s,0.5)：交易股票使其价值为账户总资产的50%，这里即半仓。<br>    order_to(s,0)：交易一定股票使交易后该股数量为0，即清仓。</p>
+<pre><code>大体就是如此，按此策略，我们试着跑了一下：
+</code></pre><p><img src="http://mmbiz.qpic.cn/mmbiz/nvWlHia9NcgVGyL7J6WzlQ3f5nhA2WfZIUx3DxU2k8zCU1w8YMJ5hvMwPXO2b19RHS8wurpHvGsao0FM4XvUy8A/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt=""><br>    似乎还不错的样子，阿尔法达到了32.9%，应该说是轻松超过了基准，最大回撤还是有些大，达到了45.6%，不太理想，说明风险控制不足。于是我准备在此基础上再简单加一些风控机制。<br>即5日内跌幅大于10%或15日内涨幅超过50%时，全部清仓。<br>    于是变成了：<br><img src="http://mmbiz.qpic.cn/mmbiz/nvWlHia9NcgVGyL7J6WzlQ3f5nhA2WfZIZpvriaGx1SDhOGaP38qUaupqS3uFE3Rr3bKf7HAjpiaice6wNr8SxlLLA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt=""><br>    再试着跑了一下：<br><img src="http://mmbiz.qpic.cn/mmbiz/nvWlHia9NcgVGyL7J6WzlQ3f5nhA2WfZI6GR91FXqcVG6FCYnQu9P8jwU4PAaZ86T654dbsr2LawgiaHB6XpGjYw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt=""><br>    看起来有效果了，阿尔法达到了62.9%，回撤也下降到了31.1%。从两图对比也可以看出在后半段15年8月左右的下跌中较好的控制了风险。</p>
+<pre><code>但我们也不能仅仅满足于此，股池内股票单一，只有一只东航，东航在14、15年涨幅巨大，本身就是只牛股，可能不太具有说服力，于是我又调仓换股，换个大蓝（烂）筹（丑），工商银行试试看。
+</code></pre><p><img src="http://mmbiz.qpic.cn/mmbiz/nvWlHia9NcgVGyL7J6WzlQ3f5nhA2WfZIOnKjyhzA1xiaMFZA3PrHXicewWcn5Q2wBjDCgbd3Q54MtwZXJicC4wicJw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt=""><br>    显然跟之前相比不尽如人意，想了想会不会是由于工行盘子太大，波动小导致此策略施展不开：）于是再换一只同样稳的不行的601857中国神油看看：<br><img src="http://mmbiz.qpic.cn/mmbiz/nvWlHia9NcgVGyL7J6WzlQ3f5nhA2WfZILo4ObNQcLfYU1KYs8xrkksiccqx9U5lsUmu9vHkn2OF0Fl3twTDJhwA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt=""><br>    果然也是不分上下，烂的抠脚啊。<br>    既然如此，换成牛市后期和股灾中十分抢眼的国企改革龙头中粮生化看看：<br><img src="http://mmbiz.qpic.cn/mmbiz/nvWlHia9NcgVGyL7J6WzlQ3f5nhA2WfZICC7xaEdAXlfdp8NbwRiavibHxiaArc7HRpWohCv508ou1ZoVNd49iaaMGQ/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt=""><br>    嗯。。很惊人，再细看中粮这段时间的独立走势：<br><img src="http://mmbiz.qpic.cn/mmbiz/nvWlHia9NcgVGyL7J6WzlQ3f5nhA2WfZIpxVjTyzichqkOYyibhb9XTpf2fHgfgtQPtbzP8DmJxyEmtSawtuHQA8g/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt=""><br>    发现策略在头肩顶结构后还能创出新高，嗯。。看来我做的这个简单风险控制策略还不错。。<br>    当然我这只是粗略的写了一个小策略，也有许多不完善的地方，仓位的分散及股池内股票筛选、权重，都还没有制定，只是以一个简单的交易策略为依据，就当作练练手了。</p>
 <p>可以参考：</p>
 <p>阅读原文：Crossin的编程教室</p>
 <p>优矿的API文档：<a href="https://uqer.io/help/faqApi/" target="_blank" rel="external">https://uqer.io/help/faqApi/</a></p>
-<p>&amp;</p>
-<p>讲了一些python做数据处理，之前有用R语言处理一些数据，虽然支持生信分析的包很多，但感觉用起来还是不太顺手，所以再准备学习一个。能用在平时学习上，顺便与量化交易做对接。</p>
+<p>&amp;<br><img src="http://mmbiz.qpic.cn/mmbiz/nvWlHia9NcgVGyL7J6WzlQ3f5nhA2WfZI4KHvmZNR1DYFmEnWmuBRUobcA1pZrPWZzlM1MNGUEExhUZRUA6cXlw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt=""><br>讲了一些python做数据处理，之前有用R语言处理一些数据，虽然支持生信分析的包很多，但感觉用起来还是不太顺手，所以再准备学习一个。能用在平时学习上，顺便与量化交易做对接。</p>
 <p>关于Quant-trading，我也只能闲暇时间学习一个，作为一个Rookie，我也只能偶尔写写心得，做一些微小的事情。</p>
-<p>黄芋头小店<br>wechat:maize_456<br>杂文，随想，机器人测试</p>
 
       
     </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/05/Rookie-s-Quant-trading-1/" data-id="cismrsj5600003s971v8ogxig" class="article-share-link">Share</a>
+    <footer>
       
+        
+        
+        
+  <div class="addthis addthis_toolbox addthis_default_style">
+    
+      <a class="addthis_button_facebook_like" fb:like:layout="button_count"></a>
+    
+    
+      <a class="addthis_button_tweet"></a>
+    
+    
+      <a class="addthis_button_google_plusone" g:plusone:size="medium"></a>
+    
+    
+      <a class="addthis_button_pinterest_pinit" pi:pinit:layout="horizontal"></a>
+    
+    <a class="addthis_counter addthis_pill_style"></a>
+  </div>
+  <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js"></script>
+
       
+      <div class="clearfix"></div>
     </footer>
   </div>
-  
-    
-  
 </article>
 
+
+<section id="comment">
+  <h1 class="title">Kommentare</h1>
+
+  
+      <div id="fb-root"></div>
+<script>
+  (function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=123456789012345";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div class="fb-comments" data-href="http://yoursite.com/2016/08/05/Rookie-s-Quant-trading-1/index.html" data-num-posts="5" data-width="840" data-colorscheme="light"></div>
+      
+  
 </section>
-        
-          <aside id="sidebar">
-  
-    
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" results="0" placeholder="Suche">
+    <input type="hidden" name="q" value="site:yoursite.com">
+  </form>
+</div>
 
   
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">August 2016</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2016/08/05/Rookie-s-Quant-trading-1/">Rookie&#39;s Quant-trading(1)</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
 
   
 </aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2016 Yumin Huang<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
+    <div class="clearfix"></div>
   </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
+  <footer id="footer" class="inner"><div class="alignleft">
   
-    <a href="/" class="mobile-nav-link">Home</a>
+  &copy; 2016 Yumin Huang
   
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
-
-
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
-  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+</div>
+<div class="clearfix"></div></footer>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script src="/js/jquery.imagesloaded.min.js"></script>
+<script src="/js/gallery.js"></script>
 
 
-<script src="/js/script.js"></script>
 
-  </div>
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+(function($){
+  $('.fancybox').fancybox();
+})(jQuery);
+</script>
+
 </body>
 </html>
