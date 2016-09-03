@@ -3,16 +3,16 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hexo</title>
+  <title>流水落花</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="流水落花">
 <meta property="og:url" content="http://yoursite.com/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="流水落花">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="流水落花">
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="流水落花" type="application/atom+xml">
   
   
     <link rel="icon" href="/favicon.png">
@@ -33,7 +33,7 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
+        <a href="/" id="logo">流水落花</a>
       </h1>
       
     </div>
@@ -83,7 +83,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>量化交易似乎是一个很高大上的名词，隔行如隔山，以我短浅的股票投机经历，我也只能边学习边探讨。<br>也是从Crossin这个公众号受到启发，又跟师兄聊了一些投机经历，这两天开始小试牛刀一下。<br>平台选取在国内的：<br>优矿<br>uqer.io</p>
+        <p><img src="http://mmbiz.qpic.cn/mmbiz/nvWlHia9NcgVGyL7J6WzlQ3f5nhA2WfZIJaEZzWb0FYK90Lq2ViaEibBLHon1eCaiaWaQtE2ic5tw3qg9fibZ6IhZ4Sg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5" alt=""><br>量化交易似乎是一个很高大上的名词，隔行如隔山，以我短浅的股票投机经历，我也只能边学习边探讨。<br>也是从Crossin这个公众号受到启发，又跟师兄聊了一些投机经历，这两天开始小试牛刀一下。<br>平台选取在国内的：<br>优矿<br>uqer.io</p>
 <p>进入，注册，然后开始研究，新建策略，这时候就给出了一个比较简单的策略。</p>
 <p>参考Crossin公众号的一些基本操作，打算自己先简单的编写一个策略试试手。<br>正好之前某天和师兄一起去下地，我们互相交流并探讨了一下关于股票投机的经历和一些操作观念。。从实验室聊到了车上，又从车上说到了地里。。总的来说，虽然我和师兄的投机观念有较大的不同，但也是可以求同存异的。<br>当天在地里，师兄就给我谈了谈他的一种交易手法。<br>基本是这样的：超短线进出，日跌幅小于3%，半仓；日跌幅大于3%小于6%，全仓；日跌幅大于6%，割肉止损；日涨幅大于9%，止盈。大概就是这些。<br>于是我试着把这个策略写了一下：</p>
 <p>简单解释一下：<br>start&amp;end：起始和结束时间，这里我是选择了一个2年的时间段。<br>universe：股池，这里我选择了师兄最喜欢交易的东航。<br>freq：策略类型，这里我选择的是日间交易<br>refresh_rate：调仓频率，由于是超短交易，所以我设为了每日交易。<br>initialize：账户初始化，暂时没有用到。<br>handle_data(account)：每次调仓的交易策略，最为主要。<br>    account.get_attribute_history：获取股票历时数据，这里传入的第一个参数“closePrice”为收盘价，第二个参数为10，即获取最近10天内该股的收盘价格，return一个list。<br>    account.universe：从全局变量universe和当前持有的股票池中，剔除了当天停牌、退市和数据异常股票的股池。<br>    hist[s][-1]/hist[s][-2]-1：最近交易日的日涨跌幅<br>    order_pct(s,0.5)：交易股票使其价值为账户总资产的50%，这里即半仓。<br>    order_to(s,0)：交易一定股票使交易后该股数量为0，即清仓。</p>
@@ -107,7 +107,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2016/08/05/Rookie-s-Quant-trading-1/" data-id="cismrk4cn0000hw97tp890rfq" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2016/08/05/Rookie-s-Quant-trading-1/" data-id="cismrsj5600003s971v8ogxig" class="article-share-link">Share</a>
       
       
     </footer>
@@ -162,7 +162,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2016 John Doe<br>
+      &copy; 2016 Yumin Huang<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
