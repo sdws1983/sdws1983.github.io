@@ -352,62 +352,14 @@
         
           
             <p>假期嘛，就应该在家里吹着空调吃着冰棍看着剧。但是，剧荒了该怎么办！<br>好吧，我感觉最近也是没剧可看，于是我想着能不能自己写个荐剧的小脚本。</p>
-<p>打开豆瓣电影，随便找一部影片打开。<br><img src="https://mmbiz.qlogo.cn/mmbiz/nvWlHia9NcgVeicWqnhcqWrJfcRQyHJOOFCicmib39m2ddk9tZibJjH8dSkia8zj53ytnVQD13fTKMUhKWVMD4v3bWwg/0?wx_fmt=png" alt=""></p>
-<p>每部影片的界面大致如此，看看有什么可以利用来进行筛选的元素。<br>我大致的思路如此：输入一些自己喜欢的影片，找到这些影片的相似之处，之后再筛选推荐出我可能喜欢的影片。<br>于是我觉得可以利用右下角的标签过滤出自己喜欢的影片之间的相同点。<br>右键查看网页源代码，ctrl+F，查找标签：<br><img src="https://mmbiz.qlogo.cn/mmbiz/nvWlHia9NcgVeicWqnhcqWrJfcRQyHJOOFIYhyQTIkXm0kuhJWcyQsbibFZE8XySibT3272B7EaxjbX2CKo6uNN7zQ/0?wx_fmt=png" alt=""><br>okay，很容易地找到了标签的位置。</p>
-<p>让我们从头开始，首先根据名字查找电影。在豆瓣电影搜索电影名字，很容易发现豆瓣就是地址栏后面加了search。搜索后页面出现了很多电影的名单，找第一个的地址即可，也是右键查看源代码：<br><img src="https://mmbiz.qlogo.cn/mmbiz/nvWlHia9NcgVeicWqnhcqWrJfcRQyHJOOFDpT5aJVUbREgkEcFgTwWebRHtS3GjBpg25p3SBu8V89RPTmWSmV2HA/0?wx_fmt=png" alt=""><br>发现了电影的地址，这里我使用Python3 + BeautifulSoup4直接得到，代码如下：</p>
-<pre><code>&apos;&apos;&apos; Mingo&apos;s movie_recommend script &apos;&apos;&apos;
-
-from bs4 import BeautifulSoup
-import urllib.request
-import urllib.parse
-def get_html(url):
-
-send_headers = {
-    &apos;User-Agent&apos;:&apos;Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.80 Safari/537.36&apos;,
-    &apos;Accept&apos;:&apos;*/*&apos;,
-    &apos;Connection&apos;:&apos;keep-alive&apos;,
-    &apos;Host&apos;:&apos;movie.douban.com&apos;
-}
-
-req = urllib.request.Request(url,headers = send_headers)
-response = urllib.request.urlopen(req)
-html = response.read().decode(&apos;utf-8&apos;)
-
-return html
-
-def analyse(html):
-soup = BeautifulSoup(html,&apos;lxml&apos;)
-for i in soup.find_all(&apos;a&apos;):
-    try:
-        content = i[&apos;href&apos;]
-        if &apos;/subject/&apos; in content:
-            print (content)
-            break
-    except:
-        pass
-
-if __name__ == &quot;__main__&quot;:
-name = input(&quot;movie name:&quot;)
-url = &quot;https://movie.douban.com/subject_search?search_text=&quot; + urllib.parse.quote(name)
-html = get_html(url)
-analyse(html)
-</code></pre><p>这里需要注意的是url中的中文处理，这里使用<br>    urllib.parse.quote()<br>进行编码，BeautifulSoup直接获得标签内容。<br>输出结果得到电影地址，即：<br><a href="https://movie.douban.com/subject/21817627/" target="_blank" rel="external"></a></p>
-<p>再获得得到的地址网页内容，根据上面的步骤获取标签：</p>
-<pre><code>&apos;&apos;&apos; Mingo&apos;s movie_recommend script &apos;&apos;&apos;
-
-def tag(html):
-soup = BeautifulSoup(html,&apos;lxml&apos;)
-tag = []
-for i in soup.find_all(&apos;a&apos;):
-    try:
-        content = i[&apos;href&apos;]
-        if &apos;/tag/&apos; in content:
-            tag.append(i.string)
-    except:
-        pass
-
-return tag[1:]
-</code></pre><p>输入电影地址，返回一个所有标签的列表，这样我们得到了tag：</p>
+<p>打开豆瓣电影，随便找一部影片打开。<br><img src="http://mmbiz.qpic.cn/mmbiz/nvWlHia9NcgVeicWqnhcqWrJfcRQyHJOOFCicmib39m2ddk9tZibJjH8dSkia8zj53ytnVQD13fTKMUhKWVMD4v3bWwg/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt=""></p>
+<p>每部影片的界面大致如此，看看有什么可以利用来进行筛选的元素。<br>我大致的思路如此：输入一些自己喜欢的影片，找到这些影片的相似之处，之后再筛选推荐出我可能喜欢的影片。<br>于是我觉得可以利用右下角的标签过滤出自己喜欢的影片之间的相同点。<br>右键查看网页源代码，ctrl+F，查找标签：<br><img src="http://mmbiz.qpic.cn/mmbiz/nvWlHia9NcgVeicWqnhcqWrJfcRQyHJOOFIYhyQTIkXm0kuhJWcyQsbibFZE8XySibT3272B7EaxjbX2CKo6uNN7zQ/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt=""><br>okay，很容易地找到了标签的位置。</p>
+<p>让我们从头开始，首先根据名字查找电影。在豆瓣电影搜索电影名字，很容易发现豆瓣就是地址栏后面加了search。搜索后页面出现了很多电影的名单，找第一个的地址即可，也是右键查看源代码：<br><img src="http://mmbiz.qpic.cn/mmbiz/nvWlHia9NcgVeicWqnhcqWrJfcRQyHJOOFDpT5aJVUbREgkEcFgTwWebRHtS3GjBpg25p3SBu8V89RPTmWSmV2HA/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt=""><br>发现了电影的地址，这里我使用Python3 + BeautifulSoup4直接得到，代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="string">''' Mingo's movie_recommend script '''</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"><span class="keyword">import</span> urllib.request</div><div class="line"><span class="keyword">import</span> urllib.parse</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_html</span><span class="params">(url)</span>:</span></div><div class="line"></div><div class="line">   send_headers = &#123;</div><div class="line">      <span class="string">'User-Agent'</span>:<span class="string">'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.80 Safari/537.36'</span>,</div><div class="line">      <span class="string">'Accept'</span>:<span class="string">'*/*'</span>,</div><div class="line">      <span class="string">'Connection'</span>:<span class="string">'keep-alive'</span>,</div><div class="line">      <span class="string">'Host'</span>:<span class="string">'movie.douban.com'</span></div><div class="line">   &#125;</div><div class="line"></div><div class="line">   req = urllib.request.Request(url,headers = send_headers)</div><div class="line">   response = urllib.request.urlopen(req)</div><div class="line">   html = response.read().decode(<span class="string">'utf-8'</span>)</div><div class="line"></div><div class="line">   <span class="keyword">return</span> html</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">analyse</span><span class="params">(html)</span>:</span></div><div class="line">   soup = BeautifulSoup(html,<span class="string">'lxml'</span>)</div><div class="line">   <span class="keyword">for</span> i <span class="keyword">in</span> soup.find_all(<span class="string">'a'</span>):</div><div class="line">      <span class="keyword">try</span>:</div><div class="line">         content = i[<span class="string">'href'</span>]</div><div class="line">         <span class="keyword">if</span> <span class="string">'/subject/'</span> <span class="keyword">in</span> content:</div><div class="line">            <span class="keyword">print</span> (content)</div><div class="line">            <span class="keyword">break</span></div><div class="line">      <span class="keyword">except</span>:</div><div class="line">         <span class="keyword">pass</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">   name = input(<span class="string">"movie name:"</span>)</div><div class="line">   url = <span class="string">"https://movie.douban.com/subject_search?search_text="</span> + urllib.parse.quote(name)</div><div class="line">   html = get_html(url)</div><div class="line">   analyse(html)</div></pre></td></tr></table></figure>
+<p>这里需要注意的是url中的中文处理，这里使用<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">urllib.parse.quote()</div></pre></td></tr></table></figure></p>
+<p>进行编码，BeautifulSoup直接获得标签内容。<br>输出结果得到电影地址，即：<br><a href="https://movie.douban.com/subject/21817627/" target="_blank" rel="external"></a></p>
+<p>再获得得到的地址网页内容，根据上面的步骤获取标签：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="string">''' Mingo's movie_recommend script '''</span></div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">tag</span><span class="params">(html)</span>:</span></div><div class="line">    soup = BeautifulSoup(html,<span class="string">'lxml'</span>)</div><div class="line">    tag = []</div><div class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> soup.find_all(<span class="string">'a'</span>):</div><div class="line">        <span class="keyword">try</span>:</div><div class="line">            content = i[<span class="string">'href'</span>]</div><div class="line">            <span class="keyword">if</span> <span class="string">'/tag/'</span> <span class="keyword">in</span> content:</div><div class="line">                tag.append(i.string)</div><div class="line">        <span class="keyword">except</span>:</div><div class="line">            <span class="keyword">pass</span></div><div class="line"></div><div class="line">    <span class="keyword">return</span> tag[<span class="number">1</span>:]</div></pre></td></tr></table></figure></p>
+<p>输入电影地址，返回一个所有标签的列表，这样我们得到了tag：<br><img src="http://mmbiz.qpic.cn/mmbiz/nvWlHia9NcgVeicWqnhcqWrJfcRQyHJOOFzJCiacaRfkmxlAibwsykhc0ZQRCFHnHUWrf4A8zxTJcxLmezUXftmvuw/640?wx_fmt=png&amp;tp=webp&amp;wxfrom=5&amp;wx_lazy=1" alt=""></p>
 <p>于是我们准备再对tag进行处理，搜集所有影片的tag，之后对所有tag进行排列组合，再使用tag组合后进行反向搜索得到推荐电影，大致就是这个思路。</p>
 <p>今天太迟了打算放到明天再继续。。</p>
 <p>未完待续。。</p>
