@@ -1,24 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<search>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Mingo&#39;s</title>
   
+  <link href="/atom.xml" rel="self"/>
   
+  <link href="http://yoursite.com/"/>
+  <updated>2016-09-04T03:18:25.828Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>Yumin Huang</name>
     
-    <entry>
-      <title><![CDATA[Voigtlander 50/2.8 dkl]]></title>
-      <url>http://yoursite.com/2016/09/04/Voigtlander-50-2-8-dkl/</url>
-      <content type="html"><![CDATA[<blockquote><p>Your first 10000 photographs are your worst.</p>
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Voigtlander 50/2.8 dkl</title>
+    <link href="http://yoursite.com/2016/09/04/Voigtlander-50-2-8-dkl/"/>
+    <id>http://yoursite.com/2016/09/04/Voigtlander-50-2-8-dkl/</id>
+    <published>2016-09-04T02:46:31.000Z</published>
+    <updated>2016-09-04T03:18:25.828Z</updated>
+    
+    <content type="html"><![CDATA[<blockquote><p>Your first 10000 photographs are your worst.</p>
 <footer><strong>Henri Cartier-Bresson</strong></footer></blockquote>
 <a id="more"></a>
 <p>###　<strong>试片</strong></p>
 <img src="/uploads/Voigtlander-50-2-8-dkl/DSC04053.jpg" class="full-image">
 <img src="/uploads/Voigtlander-50-2-8-dkl/DSC06068.jpg" class="full-image">
 <img src="/uploads/Voigtlander-50-2-8-dkl/DSC04231.jpg" class="full-image">]]></content>
-    </entry>
     
-    <entry>
-      <title><![CDATA[Min.教你远离剧荒（2）]]></title>
-      <url>http://yoursite.com/2016/09/03/Min-%E6%95%99%E4%BD%A0%E8%BF%9C%E7%A6%BB%E5%89%A7%E8%8D%92%EF%BC%882%EF%BC%89/</url>
-      <content type="html"><![CDATA[<p>上次我们已经获得了tag标签，现在我打算对标签进行排列组合。<br>这里仅计算组合结果，不进行排列，计算公式为：<br><img src="http://i1.piimg.com/567571/b82866d6d7abe928.png" alt=""></p>
+    <summary type="html">
+    
+      &lt;blockquote&gt;&lt;p&gt;Your first 10000 photographs are your worst.&lt;/p&gt;
+&lt;footer&gt;&lt;strong&gt;Henri Cartier-Bresson&lt;/strong&gt;&lt;/footer&gt;&lt;/blockquote&gt;
+    
+    </summary>
+    
+      <category term="摄影" scheme="http://yoursite.com/categories/%E6%91%84%E5%BD%B1/"/>
+    
+    
+      <category term="摄影" scheme="http://yoursite.com/tags/%E6%91%84%E5%BD%B1/"/>
+    
+      <category term="生活" scheme="http://yoursite.com/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Min.教你远离剧荒（2）</title>
+    <link href="http://yoursite.com/2016/09/03/Min-%E6%95%99%E4%BD%A0%E8%BF%9C%E7%A6%BB%E5%89%A7%E8%8D%92%EF%BC%882%EF%BC%89/"/>
+    <id>http://yoursite.com/2016/09/03/Min-教你远离剧荒（2）/</id>
+    <published>2016-09-03T08:53:52.000Z</published>
+    <updated>2016-09-03T14:45:42.776Z</updated>
+    
+    <content type="html"><![CDATA[<p>上次我们已经获得了tag标签，现在我打算对标签进行排列组合。<br>这里仅计算组合结果，不进行排列，计算公式为：<br><img src="http://i1.piimg.com/567571/b82866d6d7abe928.png" alt=""></p>
 <p>计算出所有tag在不同n情况下的组合，再用这些组合进行反向筛选电影，n越大权重越高，所以对n降序排列。<br>有些电影的tag数过多，所以决定只取5个tag。<br><a id="more"></a><br>先上代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="string">''' Mingo's movie_recommend script '''</span></div><div class="line"></div><div class="line"><span class="keyword">import</span> itertools</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">arrange</span><span class="params">(tag)</span>:</span></div><div class="line">   <span class="keyword">for</span> num <span class="keyword">in</span> range(len(tag), <span class="number">0</span>, <span class="number">-1</span>):</div><div class="line">      s = (list(itertools.combinations(tag, num)))</div><div class="line">      print(s)</div></pre></td></tr></table></figure></p>
 <p>这里我用到了itertools模块进行组合运算，itertools.combinations(tag, num)即从tag中取出num个元素进行组合，各组合return一个元组，list返回一个列表。这里range是反向排列的，因为num越大权重越大。输出如下：<br><img src="http://i1.piimg.com/567571/f0f362a7ca328610.png" alt=""></p>
 <p>得到了标签的组合，现在再观察豆瓣电影标签查找电影的页面：<br><img src="http://i1.piimg.com/567571/c1e6043b0e01991c.png" alt=""></p>
@@ -43,12 +78,33 @@
 <p>看来没问题，排列输出正确。<br>将输出的list再拼接回去，再输出：<br><img src="http://i1.piimg.com/567571/ed4e250b40c64b93.png" alt=""><br><img src="http://i1.piimg.com/567571/85631317d1e0919b.png" alt=""><br><img src="http://i1.piimg.com/567571/1859e3b67e82c571.png" alt=""><br>okay，就这样完成了！效果似乎还不错。<br>于是你可以输入各种你喜欢的剧，看看这个小脚本到底给不给力吧！</p>
 <p>最后把源代码上传到了github上。<br><a href="https://github.com/sdws1983" target="_blank" rel="external">Mingo’s Github</a></p>
 ]]></content>
-    </entry>
     
-    <entry>
-      <title><![CDATA[Min.教你远离剧荒（1）]]></title>
-      <url>http://yoursite.com/2016/08/11/Min-%E6%95%99%E4%BD%A0%E8%BF%9C%E7%A6%BB%E5%89%A7%E8%8D%92%EF%BC%881%EF%BC%89/</url>
-      <content type="html"><![CDATA[<p>假期嘛，就应该在家里吹着空调吃着冰棍看着剧。但是，剧荒了该怎么办！<br>好吧，我感觉最近也是没剧可看，于是我想着能不能自己写个荐剧的小脚本。<br><a id="more"></a><br>打开豆瓣电影，随便找一部影片打开。<br><img src="http://i2.buimg.com/567571/521009a7a5af14d7.png" alt=""></p>
+    <summary type="html">
+    
+      &lt;p&gt;上次我们已经获得了tag标签，现在我打算对标签进行排列组合。&lt;br&gt;这里仅计算组合结果，不进行排列，计算公式为：&lt;br&gt;&lt;img src=&quot;http://i1.piimg.com/567571/b82866d6d7abe928.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt;
+&lt;p&gt;计算出所有tag在不同n情况下的组合，再用这些组合进行反向筛选电影，n越大权重越高，所以对n降序排列。&lt;br&gt;有些电影的tag数过多，所以决定只取5个tag。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="编程" scheme="http://yoursite.com/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="电影" scheme="http://yoursite.com/tags/%E7%94%B5%E5%BD%B1/"/>
+    
+      <category term="编程" scheme="http://yoursite.com/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Min.教你远离剧荒（1）</title>
+    <link href="http://yoursite.com/2016/08/11/Min-%E6%95%99%E4%BD%A0%E8%BF%9C%E7%A6%BB%E5%89%A7%E8%8D%92%EF%BC%881%EF%BC%89/"/>
+    <id>http://yoursite.com/2016/08/11/Min-教你远离剧荒（1）/</id>
+    <published>2016-08-11T15:35:50.000Z</published>
+    <updated>2016-09-03T14:35:59.970Z</updated>
+    
+    <content type="html"><![CDATA[<p>假期嘛，就应该在家里吹着空调吃着冰棍看着剧。但是，剧荒了该怎么办！<br>好吧，我感觉最近也是没剧可看，于是我想着能不能自己写个荐剧的小脚本。<br><a id="more"></a><br>打开豆瓣电影，随便找一部影片打开。<br><img src="http://i2.buimg.com/567571/521009a7a5af14d7.png" alt=""></p>
 <p>每部影片的界面大致如此，看看有什么可以利用来进行筛选的元素。<br>我大致的思路如此：输入一些自己喜欢的影片，找到这些影片的相似之处，之后再筛选推荐出我可能喜欢的影片。<br>于是我觉得可以利用右下角的标签过滤出自己喜欢的影片之间的相同点。<br>右键查看网页源代码，ctrl+F，查找标签：<br><img src="http://i2.buimg.com/567571/02b348bd575d5406.png" alt=""><br>okay，很容易地找到了标签的位置。</p>
 <p>让我们从头开始，首先根据名字查找电影。在豆瓣电影搜索电影名字，很容易发现豆瓣就是地址栏后面加了search。搜索后页面出现了很多电影的名单，找第一个的地址即可，也是右键查看源代码：<br><img src="http://i2.buimg.com/567571/3b86518f782ed182.png" alt=""><br>发现了电影的地址，这里我使用Python3 + BeautifulSoup4直接得到，代码如下：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line"><span class="string">''' Mingo's movie_recommend script '''</span></div><div class="line"></div><div class="line"><span class="keyword">from</span> bs4 <span class="keyword">import</span> BeautifulSoup</div><div class="line"><span class="keyword">import</span> urllib.request</div><div class="line"><span class="keyword">import</span> urllib.parse</div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">get_html</span><span class="params">(url)</span>:</span></div><div class="line"></div><div class="line">   send_headers = &#123;</div><div class="line">      <span class="string">'User-Agent'</span>:<span class="string">'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.80 Safari/537.36'</span>,</div><div class="line">      <span class="string">'Accept'</span>:<span class="string">'*/*'</span>,</div><div class="line">      <span class="string">'Connection'</span>:<span class="string">'keep-alive'</span>,</div><div class="line">      <span class="string">'Host'</span>:<span class="string">'movie.douban.com'</span></div><div class="line">   &#125;</div><div class="line"></div><div class="line">   req = urllib.request.Request(url,headers = send_headers)</div><div class="line">   response = urllib.request.urlopen(req)</div><div class="line">   html = response.read().decode(<span class="string">'utf-8'</span>)</div><div class="line"></div><div class="line">   <span class="keyword">return</span> html</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">analyse</span><span class="params">(html)</span>:</span></div><div class="line">   soup = BeautifulSoup(html,<span class="string">'lxml'</span>)</div><div class="line">   <span class="keyword">for</span> i <span class="keyword">in</span> soup.find_all(<span class="string">'a'</span>):</div><div class="line">      <span class="keyword">try</span>:</div><div class="line">         content = i[<span class="string">'href'</span>]</div><div class="line">         <span class="keyword">if</span> <span class="string">'/subject/'</span> <span class="keyword">in</span> content:</div><div class="line">            <span class="keyword">print</span> (content)</div><div class="line">            <span class="keyword">break</span></div><div class="line">      <span class="keyword">except</span>:</div><div class="line">         <span class="keyword">pass</span></div><div class="line"></div><div class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</div><div class="line">   name = input(<span class="string">"movie name:"</span>)</div><div class="line">   url = <span class="string">"https://movie.douban.com/subject_search?search_text="</span> + urllib.parse.quote(name)</div><div class="line">   html = get_html(url)</div><div class="line">   analyse(html)</div></pre></td></tr></table></figure>
@@ -61,12 +117,32 @@
 <p>今天太迟了打算放到明天再继续。。</p>
 <p>未完待续。。</p>
 ]]></content>
-    </entry>
     
-    <entry>
-      <title><![CDATA[Rookie's Quant-trading(1)]]></title>
-      <url>http://yoursite.com/2016/08/05/Rookie-s-Quant-trading-1/</url>
-      <content type="html"><![CDATA[<p><img src="http://i1.piimg.com/567571/8e5864d2fdceb0af.jpg" alt=""><br>量化交易似乎是一个很高大上的名词，隔行如隔山，以我短浅的股票投机经历，我也只能边学习边探讨。<br>也是从Crossin这个公众号受到启发，又跟师兄聊了一些投机经历，这两天开始小试牛刀一下。<br><a id="more"></a><br>平台选取在国内的：<br>    <em>优矿</em><br>    <a href="http://uqer.io" target="_blank" rel="external">uqer.io</a></p>
+    <summary type="html">
+    
+      &lt;p&gt;假期嘛，就应该在家里吹着空调吃着冰棍看着剧。但是，剧荒了该怎么办！&lt;br&gt;好吧，我感觉最近也是没剧可看，于是我想着能不能自己写个荐剧的小脚本。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="编程" scheme="http://yoursite.com/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="电影" scheme="http://yoursite.com/tags/%E7%94%B5%E5%BD%B1/"/>
+    
+      <category term="编程" scheme="http://yoursite.com/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Rookie&#39;s Quant-trading(1)</title>
+    <link href="http://yoursite.com/2016/08/05/Rookie-s-Quant-trading-1/"/>
+    <id>http://yoursite.com/2016/08/05/Rookie-s-Quant-trading-1/</id>
+    <published>2016-08-05T08:37:42.000Z</published>
+    <updated>2016-09-03T14:28:33.043Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://i1.piimg.com/567571/8e5864d2fdceb0af.jpg" alt=""><br>量化交易似乎是一个很高大上的名词，隔行如隔山，以我短浅的股票投机经历，我也只能边学习边探讨。<br>也是从Crossin这个公众号受到启发，又跟师兄聊了一些投机经历，这两天开始小试牛刀一下。<br><a id="more"></a><br>平台选取在国内的：<br>    <em>优矿</em><br>    <a href="http://uqer.io" target="_blank" rel="external">uqer.io</a></p>
 <p>进入，注册，然后开始研究，新建策略，这时候就给出了一个比较简单的策略。<br><img src="http://i1.piimg.com/567571/809b577337751962.png" alt=""></p>
 <p>参考Crossin公众号的一些基本操作，打算自己先简单的编写一个策略试试手。<br>正好之前某天和师兄一起去下地，我们互相交流并探讨了一下关于股票投机的经历和一些操作观念。。从实验室聊到了车上，又从车上说到了地里。。总的来说，虽然我和师兄的投机观念有较大的不同，但也是可以求同存异的。<br>当天在地里，师兄就给我谈了谈他的一种交易手法。<br>基本是这样的：超短线进出，日跌幅小于3%，半仓；日跌幅大于3%小于6%，全仓；日跌幅大于6%，割肉止损；日涨幅大于9%，止盈。大概就是这些。<br>于是我试着把这个策略写了一下：<br><img src="http://i1.piimg.com/567571/20a052daed11c355.png" alt=""><br>简单解释一下：<br>start&amp;end：起始和结束时间，这里我是选择了一个2年的时间段。<br>universe：股池，这里我选择了师兄最喜欢交易的东航。<br>freq：策略类型，这里我选择的是日间交易<br>refresh_rate：调仓频率，由于是超短交易，所以我设为了每日交易。<br>initialize：账户初始化，暂时没有用到。<br>handle_data(account)：每次调仓的交易策略，最为主要。<br>    account.get_attribute_history：获取股票历时数据，这里传入的第一个参数“closePrice”为收盘价，第二个参数为10，即获取最近10天内该股的收盘价格，return一个list。<br>    account.universe：从全局变量universe和当前持有的股票池中，剔除了当天停牌、退市和数据异常股票的股池。<br>    hist[s][-1]/hist[s][-2]-1：最近交易日的日涨跌幅<br>    order_pct(s,0.5)：交易股票使其价值为账户总资产的50%，这里即半仓。<br>    order_to(s,0)：交易一定股票使交易后该股数量为0，即清仓。</p>
 <p>大体就是如此，按此策略，我们试着跑了一下：<br><img src="http://i1.piimg.com/567571/24dfe884b4a7fc3a.png" alt=""><br>似乎还不错的样子，阿尔法达到了32.9%，应该说是轻松超过了基准，最大回撤还是有些大，达到了45.6%，不太理想，说明风险控制不足。于是我准备在此基础上再简单加一些风控机制。<br>即5日内跌幅大于10%或15日内涨幅超过50%时，全部清仓。<br>于是变成了：<br><img src="http://i1.piimg.com/567571/21c8e37d95511ce5.png" alt=""><br>再试着跑了一下：<br><img src="http://i1.piimg.com/567571/90ec267cb6bbe338.png" alt=""><br>看起来有效果了，阿尔法达到了62.9%，回撤也下降到了31.1%。从两图对比也可以看出在后半段15年8月左右的下跌中较好的控制了风险。</p>
@@ -77,8 +153,22 @@
 <p>&amp;<br><img src="http://i1.piimg.com/567571/624d72ed1a888cdd.png" alt=""><br>讲了一些python做数据处理，之前有用R语言处理一些数据，虽然支持生信分析的包很多，但感觉用起来还是不太顺手，所以再准备学习一个。能用在平时学习上，顺便与量化交易做对接。</p>
 <p>关于Quant-trading，我也只能闲暇时间学习一个，作为一个Rookie，我也只能偶尔写写心得，做一些微小的事情。</p>
 ]]></content>
-    </entry>
     
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://i1.piimg.com/567571/8e5864d2fdceb0af.jpg&quot; alt=&quot;&quot;&gt;&lt;br&gt;量化交易似乎是一个很高大上的名词，隔行如隔山，以我短浅的股票投机经历，我也只能边学习边探讨。&lt;br&gt;也是从Crossin这个公众号受到启发，又跟师兄聊了一些投机经历，这两天开始小试牛刀一下。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="投资" scheme="http://yoursite.com/categories/%E6%8A%95%E8%B5%84/"/>
+    
+    
+      <category term="编程" scheme="http://yoursite.com/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="股票" scheme="http://yoursite.com/tags/%E8%82%A1%E7%A5%A8/"/>
+    
+      <category term="量化交易" scheme="http://yoursite.com/tags/%E9%87%8F%E5%8C%96%E4%BA%A4%E6%98%93/"/>
+    
+  </entry>
   
-  
-</search>
+</feed>
