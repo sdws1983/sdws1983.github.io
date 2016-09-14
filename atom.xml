@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-09-04T03:42:11.576Z</updated>
+  <updated>2016-09-14T15:53:21.839Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,67 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Documentation of scikit-learn 0.17</title>
+    <link href="http://yoursite.com/2016/09/14/Documentation-of-scikit-learn-0-17/"/>
+    <id>http://yoursite.com/2016/09/14/Documentation-of-scikit-learn-0-17/</id>
+    <published>2016-09-14T15:23:14.000Z</published>
+    <updated>2016-09-14T15:53:21.839Z</updated>
+    
+    <content type="html"><![CDATA[<p>准备学习一下Machinelearning，看到Python中sk-learn这个库挺不错的，准备用它试试手。<br>顺便翻译一下<a href="http://scikit-learn.org/stable/documentation.html" target="_blank" rel="external">文档</a>。</p>
+<h2 id=""><a href="#" class="headerlink" title=""></a><a id="more"></a></h2><ul>
+<li>学习及预测</li>
+</ul>
+<p>在数字数据集的情况下，给定一个数字图片用于预测。样本分为十个等级（即数字零到数字九），我们通过<em>匹配</em>一个规则来<em>预测</em>未出现的样本属于哪个等级。<br>在sk-learn，归类规则为一个Python对象，使用<strong>fit(X,y)</strong>和<strong>predict(T)</strong>方法来实现。</p>
+<p>一个规则的例子就是<strong>sklearn.svm.SVC</strong>即<a href="http://en.wikipedia.org/wiki/Support_vector_machine" target="_blank" rel="external">支持向量机</a>。规则的组成即模型的参数，但仅目前来说，我们把此规则视为一个黑箱。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sklearn <span class="keyword">import</span> svm</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>clf = svm.SVC(gamma=<span class="number">0.001</span>, C=<span class="number">100.</span>)</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p><em>挑选模型参数</em><br>在本例中我们手动设置gamma值。也可以使用一些如grid search和cross validation的工具自动寻找合适的参数值。</p>
+</blockquote>
+<p>定义我们的规则为<strong>clf</strong>，它必须符合我们的模型，从模型中进行学习。训练集数据为除了最后一个外的所有数据。Python语法为<strong>[:-1]</strong>。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>clf.fit(digits.data[:<span class="number">-1</span>], digits.target[:<span class="number">-1</span>])  </div><div class="line">SVC(C=<span class="number">100.0</span>, cache_size=<span class="number">200</span>, class_weight=<span class="keyword">None</span>, coef0=<span class="number">0.0</span>,</div><div class="line">  decision_function_shape=<span class="keyword">None</span>, degree=<span class="number">3</span>, gamma=<span class="number">0.001</span>, kernel=<span class="string">'rbf'</span>,</div><div class="line">  max_iter=<span class="number">-1</span>, probability=<span class="keyword">False</span>, random_state=<span class="keyword">None</span>, shrinking=<span class="keyword">True</span>,</div><div class="line">  tol=<span class="number">0.001</span>, verbose=<span class="keyword">False</span>)</div></pre></td></tr></table></figure></p>
+<p>现在我们可以预测新值，测试询问我们的分类器测试集为哪个数字。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>clf.predict(digits.data[<span class="number">-1</span>:])</div><div class="line">array([<span class="number">8</span>])</div></pre></td></tr></table></figure></p>
+<p>图片为：<br><img src="/uploads/Documentation" title="of scikit-learn 0.17/plot_digits_last_image_0011.png,"></p>
+<p>如你所见，这是一个很有挑战性的工作，此图十分棘手，你同意分类器的<a href="http://scikit-learn.org/stable/auto_examples/datasets/plot_digits_last_image.html" target="_blank" rel="external">结果</a>吗？</p>
+<ul>
+<li>持久模型<br>你可以使用Python内建持久化模块<a href="http://docs.python.org/library/pickle.html" target="_blank" rel="external">pickle</a>来对scikit中的模型进行保存：<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sklearn <span class="keyword">import</span> svm</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>clf = svm.SVC()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>iris = datasets.load_iris()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>X, y = iris.data, iris.target</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>clf.fit(X, y)  </div><div class="line">SVC(C=<span class="number">1.0</span>, cache_size=<span class="number">200</span>, class_weight=<span class="keyword">None</span>, coef0=<span class="number">0.0</span>,</div><div class="line">  decision_function_shape=<span class="keyword">None</span>, degree=<span class="number">3</span>, gamma=<span class="string">'auto'</span>, kernel=<span class="string">'rbf'</span>,</div><div class="line">  max_iter=<span class="number">-1</span>, probability=<span class="keyword">False</span>, random_state=<span class="keyword">None</span>, shrinking=<span class="keyword">True</span>,</div><div class="line">  tol=<span class="number">0.001</span>, verbose=<span class="keyword">False</span>)</div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> pickle</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>s = pickle.dumps(clf)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>clf2 = pickle.loads(s)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>clf2.predict(X[<span class="number">0</span>:<span class="number">1</span>])</div><div class="line">array([<span class="number">0</span>])</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>y[<span class="number">0</span>]</div><div class="line"><span class="number">0</span></div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>在某些特殊情况下，使用joblib（<strong>joblib.dump</strong> &amp; <strong>joblib.load</strong>）来替代pickle对大数据集更有效率：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sklearn.externals <span class="keyword">import</span> joblib</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>joblib.dump(clf, <span class="string">'filename.pkl'</span>)</div></pre></td></tr></table></figure></p>
+<p>之后你可以载入pickled模型（在另一Python进程中）通过：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>clf = joblib.load(<span class="string">'filename.pkl'</span>)</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>NOTE：joblib.dump返回一个文件名列表。在clf对象中每个独立的numpy数组在文件系统中被序列化为独立的文件。所有在同一目录下的文件在被joblib.load读取模型时都被用到。</p>
+</blockquote>
+<p>需注意的是，pickle有一些安全及可维护性的问题。请参照 <a href="http://scikit-learn.org/stable/modules/model_persistence.html#model-persistence" target="_blank" rel="external">持久模型</a> 一节了解sk-learn中关于此类的更多信息。</p>
+<ul>
+<li>常用惯例</li>
+</ul>
+<p>sk-learn 估计量遵循一些确定的规则使其预测。</p>
+<p>###类型转换<br>除其他特殊情况，输入类型为 <strong>float64</strong>：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sklearn <span class="keyword">import</span> random_projection</div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>rng = np.random.RandomState(<span class="number">0</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>X = rng.rand(<span class="number">10</span>, <span class="number">2000</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>X = np.array(X, dtype=<span class="string">'float32'</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>X.dtype</div><div class="line">dtype(<span class="string">'float32'</span>)</div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>transformer = random_projection.GaussianRandomProjection()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>X_new = transformer.fit_transform(X)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>X_new.dtype</div><div class="line">dtype(<span class="string">'float64'</span>)</div></pre></td></tr></table></figure></p>
+<p>在此例中，X是<strong>float32</strong>，之后通过<strong>fit_transform(X)</strong>转化为<strong>float64</strong>。</p>
+<p>回归分析目标被转化为<strong>float64</strong>，归类目标则使用如下方法：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sklearn <span class="keyword">import</span> datasets</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sklearn.svm <span class="keyword">import</span> SVC</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>iris = datasets.load_iris()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>clf = SVC()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>clf.fit(iris.data, iris.target)  </div><div class="line">SVC(C=<span class="number">1.0</span>, cache_size=<span class="number">200</span>, class_weight=<span class="keyword">None</span>, coef0=<span class="number">0.0</span>,</div><div class="line">  decision_function_shape=<span class="keyword">None</span>, degree=<span class="number">3</span>, gamma=<span class="string">'auto'</span>, kernel=<span class="string">'rbf'</span>,</div><div class="line">  max_iter=<span class="number">-1</span>, probability=<span class="keyword">False</span>, random_state=<span class="keyword">None</span>, shrinking=<span class="keyword">True</span>,</div><div class="line">  tol=<span class="number">0.001</span>, verbose=<span class="keyword">False</span>)</div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>list(clf.predict(iris.data[:<span class="number">3</span>]))</div><div class="line">[<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>]</div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>clf.fit(iris.data, iris.target_names[iris.target])  </div><div class="line">SVC(C=<span class="number">1.0</span>, cache_size=<span class="number">200</span>, class_weight=<span class="keyword">None</span>, coef0=<span class="number">0.0</span>,</div><div class="line">  decision_function_shape=<span class="keyword">None</span>, degree=<span class="number">3</span>, gamma=<span class="string">'auto'</span>, kernel=<span class="string">'rbf'</span>,</div><div class="line">  max_iter=<span class="number">-1</span>, probability=<span class="keyword">False</span>, random_state=<span class="keyword">None</span>, shrinking=<span class="keyword">True</span>,</div><div class="line">  tol=<span class="number">0.001</span>, verbose=<span class="keyword">False</span>)</div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>list(clf.predict(iris.data[:<span class="number">3</span>]))  </div><div class="line">[<span class="string">'setosa'</span>, <span class="string">'setosa'</span>, <span class="string">'setosa'</span>]</div></pre></td></tr></table></figure></p>
+<p>在这里，第一个<strong>predict()</strong>返回一个整型队列，因为<strong>iris.target</strong>(一个整型队列)被用在<em>fit</em>中。第二个<strong>predict</strong>返回一个字符串队列，因为iris.target_names被用于匹配。</p>
+<p>###改装和升级参数</p>
+<p>模拟器的超参数可以在通过使用 <a href="http://scikit-learn.org/stable/modules/generated/sklearn.pipeline.Pipeline.html#sklearn.pipeline.Pipeline.set_params" target="_blank" rel="external">sklearn.pipeline.Pipeline.set_params</a> 方法建成后进行升级。多次使用fit()将覆盖之前fit()学习到的内容：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">import</span> numpy <span class="keyword">as</span> np</div><div class="line"><span class="meta">&gt;&gt;&gt; </span><span class="keyword">from</span> sklearn.svm <span class="keyword">import</span> SVC</div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>rng = np.random.RandomState(<span class="number">0</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>X = rng.rand(<span class="number">100</span>, <span class="number">10</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>y = rng.binomial(<span class="number">1</span>, <span class="number">0.5</span>, <span class="number">100</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>X_test = rng.rand(<span class="number">5</span>, <span class="number">10</span>)</div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>clf = SVC()</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>clf.set_params(kernel=<span class="string">'linear'</span>).fit(X, y)  </div><div class="line">SVC(C=<span class="number">1.0</span>, cache_size=<span class="number">200</span>, class_weight=<span class="keyword">None</span>, coef0=<span class="number">0.0</span>,</div><div class="line">  decision_function_shape=<span class="keyword">None</span>, degree=<span class="number">3</span>, gamma=<span class="string">'auto'</span>, kernel=<span class="string">'linear'</span>,</div><div class="line">  max_iter=<span class="number">-1</span>, probability=<span class="keyword">False</span>, random_state=<span class="keyword">None</span>, shrinking=<span class="keyword">True</span>,</div><div class="line">  tol=<span class="number">0.001</span>, verbose=<span class="keyword">False</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>clf.predict(X_test)</div><div class="line">array([<span class="number">1</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>])</div><div class="line"></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>clf.set_params(kernel=<span class="string">'rbf'</span>).fit(X, y)  </div><div class="line">SVC(C=<span class="number">1.0</span>, cache_size=<span class="number">200</span>, class_weight=<span class="keyword">None</span>, coef0=<span class="number">0.0</span>,</div><div class="line">  decision_function_shape=<span class="keyword">None</span>, degree=<span class="number">3</span>, gamma=<span class="string">'auto'</span>, kernel=<span class="string">'rbf'</span>,</div><div class="line">  max_iter=<span class="number">-1</span>, probability=<span class="keyword">False</span>, random_state=<span class="keyword">None</span>, shrinking=<span class="keyword">True</span>,</div><div class="line">  tol=<span class="number">0.001</span>, verbose=<span class="keyword">False</span>)</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>clf.predict(X_test)</div><div class="line">array([<span class="number">0</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">0</span>])</div></pre></td></tr></table></figure></p>
+<p>在这里，默认kernal <strong>rbf</strong> 在模拟器通过<strong>SVC()</strong>建立之后一开始被改为 <strong>linear</strong>，之后被改回<strong>rbf</strong>以重新训练模拟器并做下次预测。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;准备学习一下Machinelearning，看到Python中sk-learn这个库挺不错的，准备用它试试手。&lt;br&gt;顺便翻译一下&lt;a href=&quot;http://scikit-learn.org/stable/documentation.html&quot;&gt;文档&lt;/a&gt;。&lt;/p&gt;
+&lt;h2 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;
+    
+    </summary>
+    
+      <category term="编程" scheme="http://yoursite.com/categories/%E7%BC%96%E7%A8%8B/"/>
+    
+    
+      <category term="编程" scheme="http://yoursite.com/tags/%E7%BC%96%E7%A8%8B/"/>
+    
+      <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
+    
+      <category term="Machinelearning" scheme="http://yoursite.com/tags/Machinelearning/"/>
+    
+  </entry>
   
   <entry>
     <title>Voigtlander 50/2.8 dkl</title>
@@ -89,11 +150,11 @@
       <category term="编程" scheme="http://yoursite.com/categories/%E7%BC%96%E7%A8%8B/"/>
     
     
-      <category term="电影" scheme="http://yoursite.com/tags/%E7%94%B5%E5%BD%B1/"/>
-    
       <category term="编程" scheme="http://yoursite.com/tags/%E7%BC%96%E7%A8%8B/"/>
     
       <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
+    
+      <category term="电影" scheme="http://yoursite.com/tags/%E7%94%B5%E5%BD%B1/"/>
     
   </entry>
   
@@ -127,11 +188,11 @@
       <category term="编程" scheme="http://yoursite.com/categories/%E7%BC%96%E7%A8%8B/"/>
     
     
-      <category term="电影" scheme="http://yoursite.com/tags/%E7%94%B5%E5%BD%B1/"/>
-    
       <category term="编程" scheme="http://yoursite.com/tags/%E7%BC%96%E7%A8%8B/"/>
     
       <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
+    
+      <category term="电影" scheme="http://yoursite.com/tags/%E7%94%B5%E5%BD%B1/"/>
     
   </entry>
   
