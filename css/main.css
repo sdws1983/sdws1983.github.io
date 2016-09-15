@@ -185,7 +185,7 @@ th {
 }
 body {
   position: relative;
-  font-family: NSimSun, "PMingLiU", Georgia, sans;
+  font-family: "NSimSun", "PMingLiU", Georgia, sans;
   font-size: 14px;
   line-height: 2;
   color: #555;
@@ -1663,7 +1663,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #c9ffff;
+  background: #83c76a;
 }
 .links-of-blogroll {
   font-size: 13px;
