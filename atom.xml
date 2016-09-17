@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-09-15T06:05:44.512Z</updated>
+  <updated>2016-09-17T14:58:56.770Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>奥森阴天小游</title>
+    <link href="http://yoursite.com/2016/09/17/%E5%A5%A5%E6%A3%AE%E9%98%B4%E5%A4%A9%E5%B0%8F%E6%B8%B8/"/>
+    <id>http://yoursite.com/2016/09/17/奥森阴天小游/</id>
+    <published>2016-09-17T14:54:17.000Z</published>
+    <updated>2016-09-17T14:58:56.770Z</updated>
+    
+    <content type="html"><![CDATA[<p>中秋佳节，最后一日，与实验室友人游于奥森公园，天阴沉，并带相机小捏几张。<br><a id="more"></a></p>
+<img src="/uploads/阴天头/Y3VyOUljK0lkdmhtcXdUMWVBV01iN01GUVByT1lDOFpkcmFzdVJGWWFPNitIZHg0YVkyUmZnPT0.jpg" class="full-image">
+<img src="/uploads/阴天头/Y3VyOUljK0lkdmhtcXdUMWVBV01iOGEwSC9MMi9YWk5NbEMyMjgrRmNFdVRBcWZaQlArWHd3PT0.jpg" class="full-image">
+<img src="/uploads/阴天头/Y3VyOUljK0lkdmhtcXdUMWVBV01iM1NGajFqaHVNb0hPYjR3M3FYaC9ScVFCbHQ5UXYzK0VnPT0.jpg" class="full-image">]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;中秋佳节，最后一日，与实验室友人游于奥森公园，天阴沉，并带相机小捏几张。&lt;br&gt;
+    
+    </summary>
+    
+      <category term="摄影" scheme="http://yoursite.com/categories/%E6%91%84%E5%BD%B1/"/>
+    
+    
+      <category term="摄影" scheme="http://yoursite.com/tags/%E6%91%84%E5%BD%B1/"/>
+    
+      <category term="生活" scheme="http://yoursite.com/tags/%E7%94%9F%E6%B4%BB/"/>
+    
+  </entry>
   
   <entry>
     <title>Min教你CAU一键上网</title>
