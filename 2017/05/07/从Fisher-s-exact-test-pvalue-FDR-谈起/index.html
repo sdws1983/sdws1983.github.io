@@ -92,13 +92,13 @@
 <meta property="og:url" content="http://yoursite.com/2017/05/07/从Fisher-s-exact-test-pvalue-FDR-谈起/index.html">
 <meta property="og:site_name" content="Mingo's">
 <meta property="og:description" content="事实上，我有一个形似这样的热图：">
-<meta property="og:image" content="http://yoursite.com/uploads/20170428135408.jpg">
-<meta property="og:image" content="http://yoursite.com/uploads/CodeCogsEqn.gif">
-<meta property="og:updated_time" content="2017-05-07T05:58:19.020Z">
+<meta property="og:image" content="http://i2.muimg.com/1949/d84d6ede0b16a644.png">
+<meta property="og:image" content="http://ww1.sinaimg.cn/large/006HJ39wgy1ffcschefbog30e4019dfm.gif">
+<meta property="og:updated_time" content="2017-05-07T06:34:29.571Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从Fisher's exact test, pvalue, FDR 谈起">
 <meta name="twitter:description" content="事实上，我有一个形似这样的热图：">
-<meta name="twitter:image" content="http://yoursite.com/uploads/20170428135408.jpg">
+<meta name="twitter:image" content="http://i2.muimg.com/1949/d84d6ede0b16a644.png">
 
 
 
@@ -365,7 +365,7 @@
       
 
       
-        <p>事实上，我有一个形似这样的热图：<br><a id="more"></a><br><img src="/uploads/20170428135408.jpg" class="full-image"></p>
+        <p>事实上，我有一个形似这样的热图：<br><a id="more"></a><br><img src="http://i2.muimg.com/1949/d84d6ede0b16a644.png" alt=""></p>
 <p>即一组 n 行 m 列的数据，在热图上，每一个小格代表每个数据占这一行总数的比例。</p>
 <p>之前做到这里把热图一画，看看哪几个格子颜色深就得了，也想做一些统计学的比较，但似乎无从入手。</p>
 <p>这几天看文献发现可以做一个 <strong>Fisher’s Exact Test</strong> ，其实也就是常说的富集分析，平时做的 GO 富集也就是这个道理，只是我没有想到而已。</p>
@@ -404,14 +404,16 @@
 </tbody>
 </table>
 <p>对一个2乘2列联表进行检验，使用公式：</p>
-<img src="/uploads/CodeCogsEqn.gif" class="full-image">
-<p>这个 p 值即是这个表出现的概率，而 <strong>pvalue</strong> 表示在原假设为真前提下，出现该样本或比该样本更极端的概率之和，即 <strong>pvalue</strong> 是多个表 p 值的和。<br>现在转到生物学分析来，比如在做 GO 富集分析时，某样品 GO 注释的总基因数为 N ，属于某个条目的基因数为 M ，差异表达分析后得到的基因数量为 n ，这 n 个基因里有 k 个基因属于这个条目，用这些数据判断此条目是否富集。<br>关于富集性分析，有几种方法可以执行：</p>
+<p><img src="http://ww1.sinaimg.cn/large/006HJ39wgy1ffcschefbog30e4019dfm.gif" alt=""></p>
+<p>这个 p 值即是这个表出现的概率，而 <strong>pvalue</strong> 表示在原假设为真前提下，出现该样本或比该样本更极端的概率之和，即 <strong>pvalue</strong> 是多个表 p 值的和。</p>
+<p>现在转到生物学分析来，比如在做 GO 富集分析时，某样品 GO 注释的总基因数为 N ，属于某个条目的基因数为 M ，差异表达分析后得到的基因数量为 n ，这 n 个基因里有 k 个基因属于这个条目，用这些数据判断此条目是否富集。<br>关于富集性分析，有几种方法可以执行：</p>
 <ul>
 <li>超几何分布（常用）</li>
 <li>fisher’s exact test （也使用超几何分布）</li>
 <li>卡方检验</li>
 </ul>
-<p>这里<strong>超几何分布</strong>和 <strong>fisher’s exact test</strong> 是一个意思，<strong>fisher’s exact test</strong> 是使用超几何分布来计算 P 值，所以它们的结果是相同的，而<strong>卡方检验</strong>通常只做近似值估计，并不精确，不推荐使用。<br>试着用 <strong>fisher’s exact test</strong> 进行富集分析，先建立 2×2 列联表：</p>
+<p>这里<strong>超几何分布</strong>和 <strong>fisher’s exact test</strong> 是一个意思，<strong>fisher’s exact test</strong> 是使用超几何分布来计算 P 值，所以它们的结果是相同的，而<strong>卡方检验</strong>通常只做近似值估计，并不精确，不推荐使用。</p>
+<p>试着用 <strong>fisher’s exact test</strong> 进行富集分析，先建立 2×2 列联表：</p>
 <table>
 <thead>
 <tr>
@@ -441,16 +443,17 @@
 <p>有两侧还有单侧的结果，选择合适的即可。</p>
 <p>现在我们得到了这一 GO 条目的 P 值，仅仅是第一步，假设你根据 P 值挑选出了显著富集的 R 个 GO 条目，其中只有 S 个是真正富集的，另外的 V 个事实上是没有富集的，也就是假阳性，因此我们希望错误比例 <strong>Q＝V/R</strong> 平均而言不能超过某个预先设定的值（比如 0.05 ），在统计学上，这也就等价于控制 <strong>FDR</strong> 不能超过 <strong>5％</strong> 。</p>
 <p>这里又提到一个问题，所谓 <strong>Pvalue</strong>、<strong>Qvalue</strong>、<strong>FDR</strong>、<strong>adjusted Pvalue</strong>究竟有啥区别，<strong>Pvalue</strong>之前介绍过了，即衡量假阳性率的指标，<strong>FDR</strong>如上所说，是衡量错误发现率的指标，即：使用<strong>Qvalue</strong>的这个参数预估<strong>FDR</strong>。<strong>Qvalue</strong> 是利用公式从<strong>Pvalue</strong>校正计算后得到，所以<strong>Qvalue</strong>通常又被称为<strong>adjusted Pvalue</strong>。</p>
-<p>所以从某种程度来说，<strong>Qvalue</strong>、<strong>FDR</strong>、<strong>adjusted Pvalue</strong>是等价的。<br>接下来计算 <strong>FDR</strong>，<strong>R</strong>中的实现：</p>
+<p>所以从某种程度来说，<strong>Qvalue</strong>、<strong>FDR</strong>、<strong>adjusted Pvalue</strong>是等价的。</p>
+<p>接下来计算 <strong>FDR</strong>，<strong>R</strong>中的实现：</p>
 <figure class="highlight r"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt; p&lt;-c(<span class="number">0.0003</span>,<span class="number">0.0001</span>,<span class="number">0.02</span>) </div><div class="line">&gt; p </div><div class="line"><span class="comment"># [1] 3e-04 1e-04 2e-02 </span></div><div class="line">&gt; p.adjust(p,method=<span class="string">"fdr"</span>,length(p)) </div><div class="line"><span class="comment"># [1] 0.00045 0.00030 0.02000</span></div></pre></td></tr></table></figure>
 <p>在 <strong>Python</strong> 中使用 <em>statsmodels.sandbox.stats.multicomp.multipletests</em> 实现，这里就不细说了。</p>
 <p>最后回到文初的问题，我把基因分成了 n 类，n 类的基因分别又注释到了 m 个条目类别里，现在拥有每类基因注释到每个条目的基因数 a，即是每个小格的意义，对每个小格做fisher’s exact test，得到P值，最后对每列，即每类基因集的所有P值做FDR检验，设定FDR阈值，即可获得富集小格。</p>
 <p>写的比较急，可能有一些错误，请指正。</p>
 <p><strong>参考</strong>:</p>
-<p><em>超几何分析和GO富集分析</em><br><a href="http://www.bakerwm.com/r/2015/01/23/hypergeometric-analysis—enrichment-analysis/" target="_blank" rel="external"></a></p>
-<p><em>Fishers Exact Test for Python (Cython)</em><br><a href="https://github.com/brentp/fishers_exact_test" target="_blank" rel="external"></a></p>
-<p><em>Statsmodels is a Python module</em><br><a href="http://www.statsmodels.org/devel/generated/statsmodels.sandbox.stats.multicomp.multipletests.html#statsmodels-sandbox-stats-multicomp-multipletests" target="_blank" rel="external"></a></p>
-<p><em>多重检验中的FDR错误控制方法与p-value的校正及Bonferroni校正</em><br><a href="https://wenku.baidu.com/view/c0008226a58da0116d17492e.html" target="_blank" rel="external"></a></p>
+<p><em>超几何分析和 GO 富集分析</em><br><a href="http://www.bakerwm.com/r/2015/01/23/hypergeometric-analysis—enrichment-analysis/" target="_blank" rel="external">http://www.bakerwm.com/r/2015/01/23/hypergeometric-analysis—enrichment-analysis/</a></p>
+<p><em>Fishers Exact Test for Python (Cython)</em><br><a href="https://github.com/brentp/fishers_exact_test" target="_blank" rel="external">https://github.com/brentp/fishers_exact_test</a></p>
+<p><em>Statsmodels is a Python module</em><br><a href="http://www.statsmodels.org/devel/generated/statsmodels.sandbox.stats.multicomp.multipletests.html#statsmodels-sandbox-stats-multicomp-multipletests" target="_blank" rel="external">http://www.statsmodels.org/devel/generated/statsmodels.sandbox.stats.multicomp.multipletests.html#statsmodels-sandbox-stats-multicomp-multipletests</a></p>
+<p><em>多重检验中的 FDR 错误控制方法与 p-value 的校正及 Bonferroni 校正</em><br><a href="https://wenku.baidu.com/view/c0008226a58da0116d17492e.html" target="_blank" rel="external">https://wenku.baidu.com/view/c0008226a58da0116d17492e.html</a></p>
 
       
     </div>
