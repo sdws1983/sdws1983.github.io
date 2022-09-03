@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<head>
+<title>Welcome to JinLab</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" 
+  href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+  <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="jscolor.js"></script>
+<style>
+  body {
+    font-size:70%;
+    font-family:Georgia,Microsoft YaHei,'宋体' , Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;
+    height:1200px;
+  }
+
+  .axis path,
+  .axis line {
+    fill: none;
+    stroke: black;
+    shape-rendering: crispEdges;
+  }
+
+  .axis text {
+      font-family: Georgia,Microsoft YaHei,'宋体' , Tahoma, Helvetica, Arial, "\5b8b\4f53", sans-serif;
+      font-size: 11px;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="row clearfix">
+    <div class="col-md-12 column">
+      <div class="page-header">
+        <h1>
+          Easy Heatmap
+        </h1>
+      </div>
+    </div>
+  </div>
+  <div class="row clearfix">
+    <div class="col-md-3 column">
+      <div class="panel-group" id="panel-527085">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <a class="panel-title" data-toggle="collapse" data-parent="#panel-527085" href="#panel-element-88637">Collapsible Group Item #1</a>
+          </div>
+          <div id="panel-element-88637" class="panel-collapse in">
+            <div class="panel-body">
+              Anim pariatur cliche...
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-527085" href="#panel-element-67785">Collapsible Group Item #2</a>
+          </div>
+          <div id="panel-element-67785" class="panel-collapse collapse">
+            <div class="panel-body">
+              Anim pariatur cliche...
+            </div>
+          </div>
+        </div>
+      </div>
+      <p>
+        Load Sets:<input type="file" id="files" name="files" lang="en-US" text="Load dataset">
+      <br />
+        <button id="submit" onclick="submit();"> submit </button>
+      <br /><br /><br />
+        <button id="default" onclick="makedefault();"> use sample file </button>&nbsp;&nbsp;<a align="left" href="data.csv">data.csv</a>
+      </p>
+    </div>
+    <div class="col-md-9 column">
+      <div class="heatmap"></div>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+    </div>
+  </div>
+</div>
+<div id="footer" class="container" align="center">
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="navbar-inner navbar-content-center">
+        <p class="text-muted credit" style="padding: 1px;">
+                <p><a align="left" href="http://202.205.91.110/"><i class="fa fa-arrow-left fa-lwi"  aria-hidden="true"></i>back to home</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Powered by Yumin Huang&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-envelope-o fa lwi" aria-hidden="true"></i> Contact information : <a href="mailto:sdws1983@126.com">sdws1983@126.com</a>.</p>
+            <p>Copyright © 2017 CAU JinLab All Rights Reserved.</p>
+        </p>
+    </div>
+</nav>
+</div>
+
+</body>
+
+
+<script>
+  //document.getElementById('files').addEventListener('change', handleFileSelect, false);
+  
+  //function handleFileSelect(evt) {
+  function submit() {
+    var x = [];
+    var y = [];
+    var value = [];
+    var file = document.getElementById('files').files[0];
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      var str = e.target.result;
+      var d = str.split("\n");
+      for (i = d.length - 1;  i > 0; i--) {
+          if (d[i] == '') {
+             d.splice(i, 1);
+          }
+      };
+      var x_name = d[0].split(/,|\t/);
+      for (var i = 1; i < d.length; i++ ) {
+        row_all = d[i].split(/,|\t/);
+        for (var j = 1; j < x_name.length; j++) {
+          y.push(row_all[0]);
+          x.push(x_name[j]);
+          value.push(row_all[j]);
+        };
+      };
+      plot(x, y, value);
+    };  
+    reader.readAsText(file);
+  }
+  
+  function makedefault() {
+    d3.csv("data.csv",function(error,csvdata){      
+    var x = [];
+    var y = [];
+    var value = []; 
+    var str = d3.csv.format( csvdata );           
+    var d = str.split("\n");
+       for (i = d.length - 1;  i > 0; i--) {
+           if (d[i] == '') {
+              d.splice(i, 1);
+           }
+       };
+       var x_name = d[0].split(/,|\t/);
+       for (var i = 1; i < d.length; i++ ) {
+         row_all = d[i].split(/,|\t/);
+         for (var j = 1; j < x_name.length; j++) {
+           y.push(row_all[0]);
+           x.push(x_name[j]);
+           value.push(row_all[j]);
+         };
+       };
+       plot(x, y, value);
+    });
+  };
+
+  function plot(x, y, value){
+
+    var svg = d3.select("svg")
+        .remove();
+
+//    alert(x);
+    var data = [];
+    for (var i = 0; i < x.length; i++ ) {
+        var newItem = {};
+        newItem.country = y[i];
+        newItem.product = x[i];
+        newItem.value = value[i];
+        data.push(newItem);
+    };
+
+    var x_elements = d3.set(data.map(function( item ) { return item.product; } )).values(),
+        y_elements = d3.set(data.map(function( item ) { return item.country; } )).values();   
+ 
+    var itemSize = 22,
+        cellSize = itemSize - 1,
+        margin = {top: 120, right: 20, bottom: 20, left: 110};
+   
+    var width = x_elements.length * 22// - margin.right - margin.left,
+        height = y_elements.length * 22 + 80//300 - margin.top - margin.bottom;
+  
+    var formatDate = d3.time.format("%Y-%m-%d");
+
+//    alert(x_elements);
+
+    var xScale = d3.scale.ordinal()
+        .domain(x_elements)
+        .rangeBands([0, x_elements.length * itemSize]);
+
+    var xAxis = d3.svg.axis()
+        .scale(xScale)
+        .tickFormat(function (d) {
+            return d;
+        })
+        .orient("top");
+
+    var yScale = d3.scale.ordinal()
+        .domain(y_elements)
+        .rangeBands([0, y_elements.length * itemSize]);
+
+    var yAxis = d3.svg.axis()
+        .scale(yScale)
+        .tickFormat(function (d) {
+            return d;
+        })
+        .orient("left");
+
+    var colorScale = d3.scale.linear()
+        .domain([Math.min.apply(null, value), Math.max.apply(null, value)])
+        .range(["white", "red"]);
+
+    var svg = d3.select('.heatmap')
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+    var bg = svg.append('rect')
+        .attr('class', 'bgs')
+        .attr('width', x_elements.length * 22)
+        .attr('height', y_elements.length * 22)
+        .attr('x', 0)
+        .attr('y', 0)
+        .attr('fill', 'black')
+    
+    var newdata = data;
+        newdata.unshift(data[0]);
+
+    var cells = svg.selectAll('rect')
+        .data(newdata)
+        .enter().append('g').append('rect')
+        .attr('class', 'cell')
+        .attr('width', cellSize)
+        .attr('height', cellSize)
+        .attr('y', function(d) { return yScale(d.country); })
+        .attr('x', function(d) { return xScale(d.product); })
+        .attr('fill', function(d) { return colorScale(d.value); });
+
+    svg.append("g")
+        .attr("class", "y axis")
+        .call(yAxis)
+        .selectAll('text')
+        .attr('font-weight', 'normal');
+
+    svg.append("g")
+        .attr("class", "x axis")
+        .call(xAxis)
+        .selectAll('text')
+        .attr('font-weight', 'normal')
+        .style("text-anchor", "start")
+        .attr("dx", ".8em")
+        .attr("dy", ".5em")
+        .attr("transform", function (d) {
+            return "rotate(-65)";
+        });
+  };
+</script>
