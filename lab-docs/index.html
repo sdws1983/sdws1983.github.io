@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071f1b">
+  <meta name="description" content="Public working guide for Yumin Huang's lab: onboarding, project workflow, reproducible analysis, training milestones, communication, and a bulk RNA-seq SOP.">
+  <title>Lab Docs — Yumin Huang</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='6' fill='%23071f1b'/%3E%3Cpath d='M14 17h8l10 15 10-15h8L36 38v11h-8V38z' fill='%23d8fa55'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/site.css">
+</head>
+<body data-page="lab-docs" data-title-en="Lab Docs — Yumin Huang" data-title-zh="实验室文档 — 黄育敏">
+  <a class="skip-link" href="#main" data-en="Skip to content" data-zh="跳到正文">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="wordmark" href="/" aria-label="Yumin Huang, home">
+        <span class="mark" aria-hidden="true">YH</span>
+        <span class="wordmark-text"><strong>YUMIN HUANG</strong><small>PLANT GENOMICS</small></span>
+      </a>
+      <div class="header-actions">
+        <nav class="main-nav" id="main-navigation" aria-label="Main navigation">
+          <a href="/" data-nav="home" data-en="Home" data-zh="首页">Home</a>
+          <a href="/research/" data-nav="research" data-en="Research" data-zh="研究">Research</a>
+          <a href="/publications/" data-nav="publications" data-en="Publications" data-zh="论文">Publications</a>
+          <a href="/software/" data-nav="software" data-en="Software" data-zh="软件">Software</a>
+          <a href="/lab-docs/" data-nav="lab-docs" data-en="Lab Docs" data-zh="实验室文档">Lab Docs</a>
+        </nav>
+        <button class="lang-toggle" type="button" aria-label="Switch language to Chinese" aria-pressed="false">中文</button>
+        <button class="menu-toggle" type="button" aria-label="Open navigation" aria-controls="main-navigation" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero" data-index="04" aria-labelledby="page-title">
+      <div class="wrap page-hero-inner">
+        <div class="breadcrumb"><a href="/" data-en="Home" data-zh="首页">Home</a> / <span data-en="Lab Docs" data-zh="实验室文档">Lab Docs</span></div>
+        <h1 id="page-title" data-en="A working guide for the lab." data-zh="实验室工作手册。">A working guide for the lab.</h1>
+        <p data-en="Shared defaults for starting well, moving projects forward, keeping analyses reproducible, and developing as an independent researcher." data-zh="这是一套共同的工作基准，帮助成员顺利起步、推进项目、保证分析可重复，并逐步成长为独立研究者。">Shared defaults for starting well, moving projects forward, keeping analyses reproducible, and developing as an independent researcher.</p>
+      </div>
+    </section>
+
+    <section class="section white">
+      <div class="wrap docs-layout">
+        <aside class="docs-nav" aria-label="Lab docs sections">
+          <strong data-en="On this page" data-zh="本页目录">On this page</strong>
+          <a href="#start" data-en="Start here" data-zh="从这里开始">Start here</a>
+          <a href="#workflow" data-en="Project workflow" data-zh="项目流程">Project workflow</a>
+          <a href="#reproducibility" data-en="Data & code" data-zh="数据与代码">Data &amp; code</a>
+          <a href="#training" data-en="Training milestones" data-zh="培养里程碑">Training milestones</a>
+          <a href="#communication" data-en="Communication" data-zh="沟通协作">Communication</a>
+          <a href="#rna-seq" data-en="Bulk RNA-seq SOP" data-zh="Bulk RNA-seq 流程">Bulk RNA-seq SOP</a>
+        </aside>
+
+        <div class="docs-content">
+          <section class="doc-block" id="start" aria-labelledby="start-title">
+            <p class="section-kicker" data-en="Start here / 01" data-zh="从这里开始 / 01">Start here / 01</p>
+            <h2 id="start-title" data-en="The first 30 days." data-zh="加入后的前 30 天。">The first 30 days.</h2>
+            <p data-en="The first month should create a reliable working environment and a clear research question. Speed matters less than building habits that make later work trustworthy." data-zh="第一个月的目标是建立可靠的工作环境并形成清晰的研究问题。与速度相比，能够让后续研究值得信赖的工作习惯更重要。">The first month should create a reliable working environment and a clear research question. Speed matters less than building habits that make later work trustworthy.</p>
+            <ul class="checklist">
+              <li data-en="Set up institutional accounts, shared storage, computing access, Git, and a backed-up working directory." data-zh="完成学校账号、共享存储、计算资源、Git 和带备份工作目录的配置。">Set up institutional accounts, shared storage, computing access, Git, and a backed-up working directory.</li>
+              <li data-en="Read three foundation papers and write one paragraph for each: the question, evidence, limitation, and next experiment." data-zh="精读三篇基础论文，每篇用一段话写清问题、证据、局限和下一步实验。">Read three foundation papers and write one paragraph for each: the question, evidence, limitation, and next experiment.</li>
+              <li data-en="Reproduce one published figure or summary table from raw or intermediate data." data-zh="从原始或中间数据复现一张已发表图或一张汇总表。">Reproduce one published figure or summary table from raw or intermediate data.</li>
+              <li data-en="Create a one-page project brief covering the biological question, study system, data, method, expected evidence, and main risk." data-zh="完成一页项目说明，涵盖生物学问题、研究体系、数据、方法、预期证据和主要风险。">Create a one-page project brief covering the biological question, study system, data, method, expected evidence, and main risk.</li>
+              <li data-en="Agree on a 90-day deliverable and define what evidence would count as progress." data-zh="共同确定一个 90 天阶段成果，并明确什么样的证据可以视为有效进展。">Agree on a 90-day deliverable and define what evidence would count as progress.</li>
+            </ul>
+          </section>
+
+          <section class="doc-block" id="workflow" aria-labelledby="workflow-title">
+            <p class="section-kicker" data-en="Project workflow / 02" data-zh="项目流程 / 02">Project workflow / 02</p>
+            <h2 id="workflow-title" data-en="Move from a question to evidence." data-zh="从科学问题走向可靠证据。">Move from a question to evidence.</h2>
+            <p data-en="Projects should advance through explicit decisions. At each stage, record what was decided, why it was reasonable, and what result would change the plan." data-zh="项目应通过明确决策向前推进。每个阶段都要记录决定内容、依据，以及什么样的结果会促使计划调整。">Projects should advance through explicit decisions. At each stage, record what was decided, why it was reasonable, and what result would change the plan.</p>
+            <div class="workflow-steps">
+              <article class="workflow-step"><span>01</span><h3 data-en="Frame the question" data-zh="定义问题">Frame the question</h3><p data-en="State the biological claim, comparison, and measurable outcome in plain language." data-zh="用清晰语言说明生物学主张、比较对象和可测量结果。">State the biological claim, comparison, and measurable outcome in plain language.</p></article>
+              <article class="workflow-step"><span>02</span><h3 data-en="Write the analysis plan" data-zh="编写分析计划">Write the analysis plan</h3><p data-en="Specify samples, controls, inclusion rules, software, outputs, and decision points before scaling." data-zh="在扩大分析前明确样本、对照、纳入标准、软件、输出和决策节点。">Specify samples, controls, inclusion rules, software, outputs, and decision points before scaling.</p></article>
+              <article class="workflow-step"><span>03</span><h3 data-en="Run a small pilot" data-zh="开展小规模试运行">Run a small pilot</h3><p data-en="Use a representative subset to test assumptions, resources, file formats, and expected signal." data-zh="使用有代表性的子集检验假设、资源消耗、文件格式和预期信号。">Use a representative subset to test assumptions, resources, file formats, and expected signal.</p></article>
+              <article class="workflow-step"><span>04</span><h3 data-en="Scale with checkpoints" data-zh="设置检查点并扩大分析">Scale with checkpoints</h3><p data-en="Automate repeated work and inspect quality summaries before launching each expensive stage." data-zh="将重复工作自动化，并在启动每个高成本阶段前检查质量汇总。">Automate repeated work and inspect quality summaries before launching each expensive stage.</p></article>
+              <article class="workflow-step"><span>05</span><h3 data-en="Interpret alternatives" data-zh="比较不同解释">Interpret alternatives</h3><p data-en="Ask which technical artifact or competing biological model could produce the same pattern." data-zh="判断哪些技术偏差或竞争性生物学模型也可能产生相同模式。">Ask which technical artifact or competing biological model could produce the same pattern.</p></article>
+              <article class="workflow-step"><span>06</span><h3 data-en="Archive the evidence" data-zh="归档证据">Archive the evidence</h3><p data-en="Freeze inputs, scripts, environments, logs, and figure-ready tables before manuscript drafting." data-zh="在论文写作前固化输入数据、脚本、运行环境、日志和制图数据表。">Freeze inputs, scripts, environments, logs, and figure-ready tables before manuscript drafting.</p></article>
+            </div>
+          </section>
+
+          <section class="doc-block" id="reproducibility" aria-labelledby="repro-title">
+            <p class="section-kicker" data-en="Data & code / 03" data-zh="数据与代码 / 03">Data &amp; code / 03</p>
+            <h2 id="repro-title" data-en="A result must be traceable." data-zh="每个结果都必须可追溯。">A result must be traceable.</h2>
+            <p data-en="A colleague should be able to identify the inputs, rerun the analysis, and recover the plotted values without reconstructing decisions from memory." data-zh="其他成员应能明确找到输入数据、重新运行分析并得到制图数值，而不需要依赖个人记忆还原决策。">A colleague should be able to identify the inputs, rerun the analysis, and recover the plotted values without reconstructing decisions from memory.</p>
+            <ul class="checklist">
+              <li data-en="Keep raw data read-only. Store checksums, source, date received, sample identifiers, and access conditions." data-zh="原始数据只读保存，并记录校验值、来源、接收日期、样本编号和访问条件。">Keep raw data read-only. Store checksums, source, date received, sample identifiers, and access conditions.</li>
+              <li data-en="Use stable sample IDs in every file. Keep biological descriptions in a versioned sample sheet." data-zh="所有文件统一使用稳定的样本编号，生物学描述保存在版本控制的样本表中。">Use stable sample IDs in every file. Keep biological descriptions in a versioned sample sheet.</li>
+              <li data-en="Put scripts and small configuration files under Git; do not commit raw sequencing data, credentials, or generated intermediates." data-zh="脚本和小型配置文件纳入 Git；原始测序数据、凭证和可重新生成的中间文件不提交。">Put scripts and small configuration files under Git; do not commit raw sequencing data, credentials, or generated intermediates.</li>
+              <li data-en="Record software versions, parameters, reference builds, random seeds, and computational environment." data-zh="记录软件版本、参数、参考基因组版本、随机种子和计算环境。">Record software versions, parameters, reference builds, random seeds, and computational environment.</li>
+              <li data-en="Generate figures from tidy tables with scripts. Never use manual edits as the only record of a final figure." data-zh="使用脚本从整洁数据表生成图形，不以手工修改作为最终图形的唯一记录。">Generate figures from tidy tables with scripts. Never use manual edits as the only record of a final figure.</li>
+            </ul>
+            <pre class="code-note" data-en="project/&#10;├── README.md          # question, owner, status, how to reproduce&#10;├── metadata/           # sample sheets and data dictionary&#10;├── config/             # parameters and environment files&#10;├── workflow/           # scripts or workflow definitions&#10;├── results/            # versioned summaries, not raw data&#10;├── figures/            # scripted final figures&#10;└── logs/               # run records and quality reports" data-zh="project/&#10;├── README.md          # 科学问题、负责人、状态与复现方法&#10;├── metadata/           # 样本表与数据字典&#10;├── config/             # 参数与运行环境文件&#10;├── workflow/           # 脚本或流程定义&#10;├── results/            # 版本化结果摘要，不存原始数据&#10;├── figures/            # 由脚本生成的最终图形&#10;└── logs/               # 运行记录与质量报告">project/
+├── README.md          # question, owner, status, how to reproduce
+├── metadata/           # sample sheets and data dictionary
+├── config/             # parameters and environment files
+├── workflow/           # scripts or workflow definitions
+├── results/            # versioned summaries, not raw data
+├── figures/            # scripted final figures
+└── logs/               # run records and quality reports</pre>
+          </section>
+
+          <section class="doc-block" id="training" aria-labelledby="training-title">
+            <p class="section-kicker" data-en="Training / 04" data-zh="人才培养 / 04">Training / 04</p>
+            <h2 id="training-title" data-en="A continuous path toward independence." data-zh="持续走向独立研究。">A continuous path toward independence.</h2>
+            <p data-en="The milestones describe increasing ownership rather than fixed labels. Timing varies by background, project, and degree; progress is judged by evidence, judgment, and reproducibility." data-zh="这些里程碑描述的是责任与能力的持续提升，而非固定标签。具体时间因基础、项目和学位而异，进展以证据、判断力和可重复性为依据。">The milestones describe increasing ownership rather than fixed labels. Timing varies by background, project, and degree; progress is judged by evidence, judgment, and reproducibility.</p>
+            <div class="milestones">
+              <article class="milestone">
+                <time data-en="0–6 months" data-zh="0–6 个月">0–6 months</time>
+                <h3 data-en="Research apprentice" data-zh="科研学徒">Research apprentice</h3>
+                <p data-en="Reproduce a workflow, understand each major input and output, keep a usable record, and explain one figure with appropriate caution." data-zh="复现一套流程，理解主要输入与输出，保留可用记录，并能谨慎、清楚地解释一张图。">Reproduce a workflow, understand each major input and output, keep a usable record, and explain one figure with appropriate caution.</p>
+              </article>
+              <article class="milestone">
+                <time data-en="6–18 months" data-zh="6–18 个月">6–18 months</time>
+                <h3 data-en="Junior researcher" data-zh="初级研究者">Junior researcher</h3>
+                <p data-en="Own an analysis module, compare methods, diagnose common failures, present evidence clearly, and propose the next discriminating test." data-zh="独立负责一个分析模块，比较方法、诊断常见问题、清晰展示证据，并提出下一项有区分力的检验。">Own an analysis module, compare methods, diagnose common failures, present evidence clearly, and propose the next discriminating test.</p>
+              </article>
+              <article class="milestone">
+                <time data-en="18–36+ months" data-zh="18–36 个月及以后">18–36+ months</time>
+                <h3 data-en="Independent researcher" data-zh="独立研究者">Independent researcher</h3>
+                <p data-en="Frame a tractable question, design the analysis, defend choices, integrate evidence, write a coherent manuscript, and help a newer member succeed." data-zh="提出可执行的问题、设计分析、论证选择、整合证据、完成连贯论文，并帮助新成员成长。">Frame a tractable question, design the analysis, defend choices, integrate evidence, write a coherent manuscript, and help a newer member succeed.</p>
+              </article>
+            </div>
+            <div class="sop-card">
+              <div class="sop-head">
+                <h3 data-en="Degree expectations" data-zh="学位阶段预期">Degree expectations</h3>
+                <span class="status-chip" data-en="FIT TO STAGE" data-zh="因阶段而异">FIT TO STAGE</span>
+              </div>
+              <p data-en="Master’s training should demonstrate sound analysis, reproducibility, and clear scientific communication within a focused scope. Doctoral training should additionally demonstrate question formation, methodological judgment, synthesis across evidence, and substantial intellectual ownership." data-zh="硕士阶段应在聚焦的研究范围内体现可靠分析、可重复性和清晰的科学表达；博士阶段还应体现提出问题、方法判断、跨证据综合及实质性的学术自主性。">Master’s training should demonstrate sound analysis, reproducibility, and clear scientific communication within a focused scope. Doctoral training should additionally demonstrate question formation, methodological judgment, synthesis across evidence, and substantial intellectual ownership.</p>
+            </div>
+          </section>
+
+          <section class="doc-block" id="communication" aria-labelledby="communication-title">
+            <p class="section-kicker" data-en="Communication / 05" data-zh="沟通协作 / 05">Communication / 05</p>
+            <h2 id="communication-title" data-en="Make the work easy to understand." data-zh="让研究工作容易被理解。">Make the work easy to understand.</h2>
+            <p data-en="Good communication exposes uncertainty early, shortens debugging, and improves the scientific question. Bring evidence, not only a verbal summary." data-zh="良好的沟通能及早暴露不确定性、缩短调试时间并改进科学问题。讨论时应带上证据，而不只是口头总结。">Good communication exposes uncertainty early, shortens debugging, and improves the scientific question. Bring evidence, not only a verbal summary.</p>
+            <ul class="checklist">
+              <li data-en="Use a short weekly update: goal, completed work, evidence, blocker, and next decision." data-zh="每周用简短文字更新：目标、已完成工作、证据、阻碍和下一项决策。">Use a short weekly update: goal, completed work, evidence, blocker, and next decision.</li>
+              <li data-en="For meetings, show the exact figure, command, error, or table behind the question." data-zh="会议讨论时展示问题背后的具体图形、命令、报错或数据表。">For meetings, show the exact figure, command, error, or table behind the question.</li>
+              <li data-en="When blocked, document two focused attempts, what each ruled out, and the smallest question that needs help." data-zh="遇到阻碍时，记录两次有针对性的尝试、各自排除了什么，以及最需要帮助的最小问题。">When blocked, document two focused attempts, what each ruled out, and the smallest question that needs help.</li>
+              <li data-en="Write figures before prose: one message per figure, with a title that states the result and a caption that states the evidence." data-zh="先完成图再写正文：每张图只表达一个核心信息，标题陈述结果，图注说明证据。">Write figures before prose: one message per figure, with a title that states the result and a caption that states the evidence.</li>
+              <li data-en="Discuss authorship and contribution expectations early, then revisit them as the work changes." data-zh="尽早讨论署名与贡献预期，并随着项目变化及时更新。">Discuss authorship and contribution expectations early, then revisit them as the work changes.</li>
+            </ul>
+          </section>
+
+          <section class="doc-block" id="rna-seq" aria-labelledby="rna-title">
+            <p class="section-kicker" data-en="Reference SOP / 06" data-zh="参考流程 / 06">Reference SOP / 06</p>
+            <h2 id="rna-title" data-en="Bulk RNA-seq: alignment workflow." data-zh="Bulk RNA-seq：比对分析流程。">Bulk RNA-seq: alignment workflow.</h2>
+            <p data-en="This reference workflow covers standard gene-level quantification from paired-end reads. The project plan should define the reference build, strandedness, biological contrasts, and exclusion criteria before analysis begins." data-zh="本参考流程用于从双端测序数据获得标准基因水平定量。分析开始前，项目计划应明确参考基因组版本、链特异性、生物学比较和排除标准。">This reference workflow covers standard gene-level quantification from paired-end reads. The project plan should define the reference build, strandedness, biological contrasts, and exclusion criteria before analysis begins.</p>
+            <div class="sop-card">
+              <div class="sop-head">
+                <h3 data-en="Core sequence" data-zh="核心步骤">Core sequence</h3>
+                <span class="status-chip" data-en="WORKING REFERENCE" data-zh="工作参考">WORKING REFERENCE</span>
+              </div>
+              <div class="sop-flow" aria-label="RNA-seq workflow">
+                <span class="flow-node">FASTQ + sample sheet</span><span class="arrow" aria-hidden="true">→</span>
+                <span class="flow-node">fastp</span><span class="arrow" aria-hidden="true">→</span>
+                <span class="flow-node">HISAT2 index</span><span class="arrow" aria-hidden="true">→</span>
+                <span class="flow-node">HISAT2 alignment</span><span class="arrow" aria-hidden="true">→</span>
+                <span class="flow-node" data-en="QC + counts" data-zh="质控 + 计数">QC + counts</span>
+              </div>
+              <p data-en="The minimum archive includes the sample sheet, reference FASTA and annotation identifiers, fastp reports, HISAT2 and samtools statistics, a gene-count matrix, software versions, parameters, logs, and the script that joins sample-level results." data-zh="最小归档内容包括样本表、参考 FASTA 与注释版本标识、fastp 报告、HISAT2 与 samtools 统计、基因计数矩阵、软件版本、参数、日志以及合并样本结果的脚本。">The minimum archive includes the sample sheet, reference FASTA and annotation identifiers, fastp reports, HISAT2 and samtools statistics, a gene-count matrix, software versions, parameters, logs, and the script that joins sample-level results.</p>
+            </div>
+            <ul class="checklist">
+              <li data-en="Validate sample names, read pairs, checksums, and metadata before processing." data-zh="处理前检查样本名、双端配对、校验值和元数据。">Validate sample names, read pairs, checksums, and metadata before processing.</li>
+              <li data-en="Run fastp with adapter detection and quality filtering; retain both HTML and JSON reports." data-zh="使用 fastp 进行接头识别和质量过滤，并保留 HTML 与 JSON 报告。">Run fastp with adapter detection and quality filtering; retain both HTML and JSON reports.</li>
+              <li data-en="Build the HISAT2 index once from the declared reference; store the command, annotation splice sites, and reference checksum." data-zh="基于已声明的参考基因组一次性构建 HISAT2 索引，并保存命令、注释剪接位点和参考序列校验值。">Build the HISAT2 index once from the declared reference; store the command, annotation splice sites, and reference checksum.</li>
+              <li data-en="Align each sample with a consistent strandedness policy; sort and index BAM files and capture alignment statistics." data-zh="按统一链特异性策略比对每个样本，对 BAM 文件排序和索引，并保存比对统计。">Align each sample with a consistent strandedness policy; sort and index BAM files and capture alignment statistics.</li>
+              <li data-en="Quantify genes with a declared annotation and counting rule; verify library complexity, mapping rate, duplication, and sample relationships before differential analysis." data-zh="使用明确的注释与计数规则进行基因定量；差异分析前检查文库复杂度、比对率、重复率和样本关系。">Quantify genes with a declared annotation and counting rule; verify library complexity, mapping rate, duplication, and sample relationships before differential analysis.</li>
+            </ul>
+          </section>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span>© <span data-current-year></span> YUMIN HUANG · FUJIAN AGRICULTURE AND FORESTRY UNIVERSITY</span>
+      <span><a href="mailto:ymhuang@fafu.edu.cn">EMAIL</a> · <a href="https://scholar.google.com/citations?user=QorViYwAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">SCHOLAR</a> · <a href="https://github.com/sdws1983" target="_blank" rel="noopener noreferrer">GITHUB</a></span>
+    </div>
+  </footer>
+  <script src="/site.js" defer></script>
+</body>
+</html>

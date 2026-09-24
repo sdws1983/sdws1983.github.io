@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071f1b">
+  <meta name="description" content="Open-source software and genomic resources from Yumin Huang's research, including NodeGWAS, Saccharum-pg, and PanSynVisualization.">
+  <title>Software — Yumin Huang</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='6' fill='%23071f1b'/%3E%3Cpath d='M14 17h8l10 15 10-15h8L36 38v11h-8V38z' fill='%23d8fa55'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/site.css">
+</head>
+<body data-page="software" data-title-en="Software — Yumin Huang" data-title-zh="软件与资源 — 黄育敏">
+  <a class="skip-link" href="#main" data-en="Skip to content" data-zh="跳到正文">Skip to content</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="wordmark" href="/" aria-label="Yumin Huang, home">
+        <span class="mark" aria-hidden="true">YH</span>
+        <span class="wordmark-text"><strong>YUMIN HUANG</strong><small>PLANT GENOMICS</small></span>
+      </a>
+      <div class="header-actions">
+        <nav class="main-nav" id="main-navigation" aria-label="Main navigation">
+          <a href="/" data-nav="home" data-en="Home" data-zh="首页">Home</a>
+          <a href="/research/" data-nav="research" data-en="Research" data-zh="研究">Research</a>
+          <a href="/publications/" data-nav="publications" data-en="Publications" data-zh="论文">Publications</a>
+          <a href="/software/" data-nav="software" data-en="Software" data-zh="软件">Software</a>
+          <a href="/lab-docs/" data-nav="lab-docs" data-en="Lab Docs" data-zh="实验室文档">Lab Docs</a>
+        </nav>
+        <button class="lang-toggle" type="button" aria-label="Switch language to Chinese" aria-pressed="false">中文</button>
+        <button class="menu-toggle" type="button" aria-label="Open navigation" aria-controls="main-navigation" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="page-hero" data-index="03" aria-labelledby="page-title">
+      <div class="wrap page-hero-inner">
+        <div class="breadcrumb"><a href="/" data-en="Home" data-zh="首页">Home</a> / <span data-en="Software" data-zh="软件">Software</span></div>
+        <h1 id="page-title" data-en="Software and open resources." data-zh="软件与开放资源。">Software and open resources.</h1>
+        <p data-en="Tools, workflows, and reproducible project resources created to solve practical problems in pangenomics and comparative genomics." data-zh="面向泛基因组学与比较基因组学实际问题开发的工具、流程和可重复项目资源。">Tools, workflows, and reproducible project resources created to solve practical problems in pangenomics and comparative genomics.</p>
+        <div class="actions">
+          <a class="button" href="https://github.com/sdws1983" target="_blank" rel="noopener noreferrer"><span data-en="View GitHub profile" data-zh="访问 GitHub 主页">View GitHub profile</span><span class="arrow" aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section white" aria-labelledby="tools-title">
+      <div class="wrap">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker" data-en="Open tools / 01" data-zh="开放工具 / 01">Open tools / 01</p>
+            <h2 id="tools-title" data-en="Methods you can inspect and reuse." data-zh="可检查、可复用的方法与资源。">Methods you can inspect and reuse.</h2>
+          </div>
+          <p data-en="Each repository connects to a concrete research need: association on genome graphs, analysis of complex polyploids, or readable multi-genome synteny." data-zh="每个仓库都对应一个具体研究需求：图基因组关联分析、复杂多倍体研究或多基因组共线性可视化。">Each repository connects to a concrete research need: association on genome graphs, analysis of complex polyploids, or readable multi-genome synteny.</p>
+        </div>
+
+        <div class="software-grid">
+          <article class="software-card">
+            <div class="software-icon" aria-hidden="true">NODE</div>
+            <div>
+              <h2>NodeGWAS</h2>
+              <span class="software-type" data-en="Graph pangenome association toolkit" data-zh="图泛基因组关联分析工具">Graph pangenome association toolkit</span>
+              <p data-en="A graph-node-based workflow for sensitive association analysis across diploid and polyploid species. It counts node support from graph alignments, builds marker tables, and maps significant nodes back to linear coordinates." data-zh="面向二倍体与多倍体物种的图节点关联分析流程。它从图比对结果中统计节点支持度、构建标记矩阵，并将显著节点回溯到线性基因组坐标。">A graph-node-based workflow for sensitive association analysis across diploid and polyploid species. It counts node support from graph alignments, builds marker tables, and maps significant nodes back to linear coordinates.</p>
+            </div>
+            <div class="software-meta">
+              <dl>
+                <dt data-en="Core" data-zh="核心语言">Core</dt><dd>Rust</dd>
+                <dt data-en="License" data-zh="许可证">License</dt><dd>MIT</dd>
+                <dt data-en="Companion paper" data-zh="配套论文">Companion paper</dt><dd>Plant Communications · 2026</dd>
+              </dl>
+              <a class="text-link" href="https://github.com/zhangyixing3/NodeGWAS" target="_blank" rel="noopener noreferrer"><span data-en="Repository" data-zh="代码仓库">Repository</span><span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+
+          <article class="software-card">
+            <div class="software-icon" aria-hidden="true">SAC</div>
+            <div>
+              <h2>Saccharum-pg</h2>
+              <span class="software-type" data-en="Multiscale super-pangenome resources" data-zh="多尺度超级泛基因组资源">Multiscale super-pangenome resources</span>
+              <p data-en="Analysis resources for the polyploid-aware Saccharum pangenome project, organized around chromosome communities, allele variation, homoeolog ecosystems, multi-omics, population genomics, GWAS, and benchmarking." data-zh="面向多倍体感知的甘蔗泛基因组项目分析资源，涵盖染色体群落、等位变异、同源基因生态系统、多组学、群体基因组、GWAS 与基准测试。">Analysis resources for the polyploid-aware Saccharum pangenome project, organized around chromosome communities, allele variation, homoeolog ecosystems, multi-omics, population genomics, GWAS, and benchmarking.</p>
+            </div>
+            <div class="software-meta">
+              <dl>
+                <dt data-en="Scope" data-zh="范围">Scope</dt><dd>Saccharum</dd>
+                <dt data-en="License" data-zh="许可证">License</dt><dd>MIT</dd>
+                <dt data-en="Companion paper" data-zh="配套论文">Companion paper</dt><dd>Science · 2026</dd>
+              </dl>
+              <a class="text-link" href="https://github.com/sdws1983/Saccharum-pg" target="_blank" rel="noopener noreferrer"><span data-en="Project resources" data-zh="项目资源">Project resources</span><span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+
+          <article class="software-card">
+            <div class="software-icon" aria-hidden="true">SYN</div>
+            <div>
+              <h2>PanSynVisualization</h2>
+              <span class="software-type" data-en="Pangenome synteny visualization" data-zh="泛基因组共线性可视化">Pangenome synteny visualization</span>
+              <p data-en="An R-driven workflow that extracts target regions, aligns sequences, and draws synteny across multiple genomes, with optional phylogenetic-tree integration for comparative interpretation." data-zh="由 R 驱动的工作流程，可提取目标区段、进行序列比对并绘制多基因组共线性图，同时支持整合系统发育树开展比较分析。">An R-driven workflow that extracts target regions, aligns sequences, and draws synteny across multiple genomes, with optional phylogenetic-tree integration for comparative interpretation.</p>
+            </div>
+            <div class="software-meta">
+              <dl>
+                <dt data-en="Interface" data-zh="使用方式">Interface</dt><dd>R command line</dd>
+                <dt data-en="License" data-zh="许可证">License</dt><dd>AGPL-3.0</dd>
+                <dt data-en="Output" data-zh="输出">Output</dt><dd>Alignment + synteny figures</dd>
+              </dl>
+              <a class="text-link" href="https://github.com/sdws1983/PanSynVisualization" target="_blank" rel="noopener noreferrer"><span data-en="Repository" data-zh="代码仓库">Repository</span><span aria-hidden="true">↗</span></a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section dark" aria-labelledby="principles-title">
+      <div class="wrap">
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker" data-en="Development principles / 02" data-zh="开发原则 / 02">Development principles / 02</p>
+            <h2 id="principles-title" data-en="Research code should carry evidence." data-zh="研究代码应当承载证据。">Research code should carry evidence.</h2>
+          </div>
+          <p data-en="The goal is not software for its own sake. A useful research tool makes an analysis more transparent, repeatable, and open to scrutiny." data-zh="开发软件并非目的本身；真正有用的研究工具应让分析更透明、更可重复，也更便于检验。">The goal is not software for its own sake. A useful research tool makes an analysis more transparent, repeatable, and open to scrutiny.</p>
+        </div>
+        <div class="principle-grid">
+          <article class="principle">
+            <span>01</span>
+            <h3 data-en="Question-driven" data-zh="问题驱动">Question-driven</h3>
+            <p data-en="Start from a biological limitation that existing methods cannot represent or test well." data-zh="从现有方法难以充分表征或检验的生物学问题出发。">Start from a biological limitation that existing methods cannot represent or test well.</p>
+          </article>
+          <article class="principle">
+            <span>02</span>
+            <h3 data-en="Validated" data-zh="经过验证">Validated</h3>
+            <p data-en="Use simulations, benchmarks, and interpretable examples to define when a method is reliable." data-zh="通过模拟、基准测试和可解释案例明确方法的可靠适用范围。">Use simulations, benchmarks, and interpretable examples to define when a method is reliable.</p>
+          </article>
+          <article class="principle">
+            <span>03</span>
+            <h3 data-en="Reusable" data-zh="可复用">Reusable</h3>
+            <p data-en="Publish code, parameters, and project structure so others can reproduce and extend the analysis." data-zh="公开代码、参数与项目结构，使他人能够重复并扩展分析。">Publish code, parameters, and project structure so others can reproduce and extend the analysis.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span>© <span data-current-year></span> YUMIN HUANG · FUJIAN AGRICULTURE AND FORESTRY UNIVERSITY</span>
+      <span><a href="mailto:ymhuang@fafu.edu.cn">EMAIL</a> · <a href="https://scholar.google.com/citations?user=QorViYwAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">SCHOLAR</a> · <a href="https://github.com/sdws1983" target="_blank" rel="noopener noreferrer">GITHUB</a></span>
+    </div>
+  </footer>
+  <script src="/site.js" defer></script>
+</body>
+</html>
