@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071f1b">
+  <meta name="description" content="{{ page.description | escape }}">
+  <title>{{ page.title | escape }} — HuangLab</title>
+  <link rel="canonical" href="https://sdws1983.github.io{{ page.url }}">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='6' fill='%23071f1b'/%3E%3Cpath d='M14 17h8l10 15 10-15h8L36 38v11h-8V38z' fill='%23d8fa55'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/site.css">
+  <link rel="stylesheet" href="/lab-docs/docs.css">
+</head>
+<body data-page="lab-docs" data-document-key="{{ page.document_key | escape }}">
+  <a class="skip-link" href="#main" data-en="Skip to content" data-zh="跳到正文">跳到正文</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="wordmark" href="/" aria-label="Yumin Huang, home">
+        <span class="mark" aria-hidden="true">YH</span>
+        <span class="wordmark-text"><strong>YUMIN HUANG</strong><small>PLANT GENOMICS</small></span>
+      </a>
+      <div class="header-actions">
+        <nav class="main-nav" id="main-navigation" aria-label="Main navigation">
+          <a href="/" data-nav="home" data-en="Home" data-zh="首页">Home</a>
+          <a href="/research/" data-nav="research" data-en="Research" data-zh="研究">Research</a>
+          <a href="/publications/" data-nav="publications" data-en="Publications" data-zh="论文">Publications</a>
+          <a href="/software/" data-nav="software" data-en="Software" data-zh="软件">Software</a>
+          <a href="/lab-docs/" data-nav="lab-docs" data-en="Lab Docs" data-zh="实验室文档">Lab Docs</a>
+        </nav>
+        <button class="lang-toggle" type="button" aria-label="Switch language to Chinese" aria-pressed="false">中文</button>
+        <button class="menu-toggle" type="button" aria-label="Open navigation" aria-controls="main-navigation" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+  <main id="main">
+    <section class="document-hero" aria-labelledby="document-title" lang="zh-CN">
+      <div class="wrap">
+        <div class="breadcrumb"><a href="/" data-en="Home" data-zh="首页">首页</a> / <a href="/lab-docs/" data-en="Lab Docs" data-zh="实验室文档">实验室文档</a></div>
+        <h1 id="document-title">{{ page.title }}</h1>
+        <p class="document-subtitle">{{ page.subtitle }}</p>
+        <div class="document-meta"><span class="version">{{ page.version }}</span><span>{{ page.edition_label }}</span><span>更新于 {{ page.updated | date: "%Y年%m月%d日" }}</span><span>HuangLab</span></div>
+        <div class="document-actions">
+          <a href="/lab-docs/">返回文档首页</a>
+          {% if page.document_key == "guide" %}<a href="/lab-docs/resources/">科研学习资源</a>{% else %}<a href="/lab-docs/guide/">实验室指南</a>{% endif %}
+          <button class="js-only" type="button" data-print-document>打印 / 保存为 PDF</button>
+          <a href="https://github.com/sdws1983/sdws1983.github.io/edit/master/{{ page.source_path }}" target="_blank" rel="noopener noreferrer">编辑本页</a>
+        </div>
+      </div>
+    </section>
+    <section class="document-section">
+      <div class="wrap document-layout">
+        <aside class="document-sidebar" lang="zh-CN" aria-label="章节导航">
+          <strong>本页目录</strong>
+          <nav id="document-toc" aria-label="本页章节"></nav>
+          <noscript>可使用正文中的目录或浏览器查找功能。</noscript>
+          <div class="sidebar-index"><a href="#document-title">回到页首</a></div>
+        </aside>
+        <article class="document-body" lang="zh-CN" aria-label="{{ page.title | escape }}">
+          {{ content }}
+          <p class="copy-status" id="copy-status" role="status" aria-live="polite"></p>
+        </article>
+      </div>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span>© <span data-current-year></span> YUMIN HUANG · FUJIAN AGRICULTURE AND FORESTRY UNIVERSITY</span>
+      <span><a href="mailto:ymhuang@fafu.edu.cn">EMAIL</a> · <a href="https://scholar.google.com/citations?user=QorViYwAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">SCHOLAR</a> · <a href="https://github.com/sdws1983" target="_blank" rel="noopener noreferrer">GITHUB</a></span>
+    </div>
+  </footer>
+  <script src="/site.js" defer></script>
+  <script src="/lab-docs/docs.js" defer></script>
+</body>
+</html>

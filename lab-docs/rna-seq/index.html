@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#071f1b">
+  <meta name="description" content="HuangLab常规Bulk RNA-seq分析流程概览。">
+  <title>Bulk RNA-seq 流程概览 — HuangLab</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='6' fill='%23071f1b'/%3E%3Cpath d='M14 17h8l10 15 10-15h8L36 38v11h-8V38z' fill='%23d8fa55'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="/site.css">
+  <link rel="stylesheet" href="/lab-docs/docs.css">
+</head>
+<body data-page="lab-docs" data-document-key="rna-seq">
+  <a class="skip-link" href="#main" data-en="Skip to content" data-zh="跳到正文">跳到正文</a>
+  <header class="site-header">
+    <div class="wrap header-inner">
+      <a class="wordmark" href="/" aria-label="Yumin Huang, home">
+        <span class="mark" aria-hidden="true">YH</span>
+        <span class="wordmark-text"><strong>YUMIN HUANG</strong><small>PLANT GENOMICS</small></span>
+      </a>
+      <div class="header-actions">
+        <nav class="main-nav" id="main-navigation" aria-label="Main navigation">
+          <a href="/" data-nav="home" data-en="Home" data-zh="首页">Home</a>
+          <a href="/research/" data-nav="research" data-en="Research" data-zh="研究">Research</a>
+          <a href="/publications/" data-nav="publications" data-en="Publications" data-zh="论文">Publications</a>
+          <a href="/software/" data-nav="software" data-en="Software" data-zh="软件">Software</a>
+          <a href="/lab-docs/" data-nav="lab-docs" data-en="Lab Docs" data-zh="实验室文档">Lab Docs</a>
+        </nav>
+        <button class="lang-toggle" type="button" aria-label="Switch language to Chinese" aria-pressed="false">中文</button>
+        <button class="menu-toggle" type="button" aria-label="Open navigation" aria-controls="main-navigation" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+  <main id="main">
+    <section class="document-hero">
+      <div class="wrap">
+        <div class="breadcrumb"><a href="/lab-docs/">实验室文档</a> / Bulk RNA-seq</div>
+        <h1>Bulk RNA-seq 流程概览</h1>
+        <p class="document-subtitle">网站原有的方法流程入口。</p>
+        <div class="document-actions"><a href="/lab-docs/guide/">实验室指南</a><a href="/lab-docs/resources/">科研学习资源</a></div>
+      </div>
+    </section>
+    <section class="document-section"><div class="wrap docs-content"><section class="doc-block" id="rna-seq" aria-labelledby="rna-title">
+            <p class="section-kicker" data-en="Reference SOP / 06" data-zh="参考流程 / 06">Reference SOP / 06</p>
+            <h2 id="rna-title" data-en="Bulk RNA-seq: alignment workflow." data-zh="Bulk RNA-seq：比对分析流程。">Bulk RNA-seq: alignment workflow.</h2>
+            <p data-en="This reference workflow covers standard gene-level quantification from paired-end reads. The project plan should define the reference build, strandedness, biological contrasts, and exclusion criteria before analysis begins." data-zh="本参考流程用于从双端测序数据获得标准基因水平定量。分析开始前，项目计划应明确参考基因组版本、链特异性、生物学比较和排除标准。">This reference workflow covers standard gene-level quantification from paired-end reads. The project plan should define the reference build, strandedness, biological contrasts, and exclusion criteria before analysis begins.</p>
+            <div class="sop-card">
+              <div class="sop-head">
+                <h3 data-en="Core sequence" data-zh="核心步骤">Core sequence</h3>
+                <span class="status-chip" data-en="WORKING REFERENCE" data-zh="工作参考">WORKING REFERENCE</span>
+              </div>
+              <div class="sop-flow" aria-label="RNA-seq workflow">
+                <span class="flow-node">FASTQ + sample sheet</span><span class="arrow" aria-hidden="true">→</span>
+                <span class="flow-node">fastp</span><span class="arrow" aria-hidden="true">→</span>
+                <span class="flow-node">HISAT2 index</span><span class="arrow" aria-hidden="true">→</span>
+                <span class="flow-node">HISAT2 alignment</span><span class="arrow" aria-hidden="true">→</span>
+                <span class="flow-node" data-en="QC + counts" data-zh="质控 + 计数">QC + counts</span>
+              </div>
+              <p data-en="The minimum archive includes the sample sheet, reference FASTA and annotation identifiers, fastp reports, HISAT2 and samtools statistics, a gene-count matrix, software versions, parameters, logs, and the script that joins sample-level results." data-zh="最小归档内容包括样本表、参考 FASTA 与注释版本标识、fastp 报告、HISAT2 与 samtools 统计、基因计数矩阵、软件版本、参数、日志以及合并样本结果的脚本。">The minimum archive includes the sample sheet, reference FASTA and annotation identifiers, fastp reports, HISAT2 and samtools statistics, a gene-count matrix, software versions, parameters, logs, and the script that joins sample-level results.</p>
+            </div>
+            <ul class="checklist">
+              <li data-en="Validate sample names, read pairs, checksums, and metadata before processing." data-zh="处理前检查样本名、双端配对、校验值和元数据。">Validate sample names, read pairs, checksums, and metadata before processing.</li>
+              <li data-en="Run fastp with adapter detection and quality filtering; retain both HTML and JSON reports." data-zh="使用 fastp 进行接头识别和质量过滤，并保留 HTML 与 JSON 报告。">Run fastp with adapter detection and quality filtering; retain both HTML and JSON reports.</li>
+              <li data-en="Build the HISAT2 index once from the declared reference; store the command, annotation splice sites, and reference checksum." data-zh="基于已声明的参考基因组一次性构建 HISAT2 索引，并保存命令、注释剪接位点和参考序列校验值。">Build the HISAT2 index once from the declared reference; store the command, annotation splice sites, and reference checksum.</li>
+              <li data-en="Align each sample with a consistent strandedness policy; sort and index BAM files and capture alignment statistics." data-zh="按统一链特异性策略比对每个样本，对 BAM 文件排序和索引，并保存比对统计。">Align each sample with a consistent strandedness policy; sort and index BAM files and capture alignment statistics.</li>
+              <li data-en="Quantify genes with a declared annotation and counting rule; verify library complexity, mapping rate, duplication, and sample relationships before differential analysis." data-zh="使用明确的注释与计数规则进行基因定量；差异分析前检查文库复杂度、比对率、重复率和样本关系。">Quantify genes with a declared annotation and counting rule; verify library complexity, mapping rate, duplication, and sample relationships before differential analysis.</li>
+            </ul>
+          </section></div></section>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap footer-inner">
+      <span>© <span data-current-year></span> YUMIN HUANG · FUJIAN AGRICULTURE AND FORESTRY UNIVERSITY</span>
+      <span><a href="mailto:ymhuang@fafu.edu.cn">EMAIL</a> · <a href="https://scholar.google.com/citations?user=QorViYwAAAAJ&amp;hl=en" target="_blank" rel="noopener noreferrer">SCHOLAR</a> · <a href="https://github.com/sdws1983" target="_blank" rel="noopener noreferrer">GITHUB</a></span>
+    </div>
+  </footer>
+  <script src="/site.js" defer></script>
+</body>
+</html>
