@@ -31,7 +31,12 @@
     document.querySelector('#empty-state').hidden = count!==0;
   }
   form.addEventListener('input',filter);
-  form.addEventListener('reset',()=>{queueMicrotask(filter);});
+  // Reset controls and results together, without depending on native reset timing.
+  form.addEventListener('reset',event=>{
+    event.preventDefault();
+    search.value=''; direction.value='all'; type.value='all'; priority.checked=false;
+    filter();
+  });
   document.querySelectorAll('.reading-sidebar nav a').forEach(link => link.addEventListener('click',()=>{
     form.reset(); filter();
   }));
